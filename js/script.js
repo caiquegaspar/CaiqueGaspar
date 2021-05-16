@@ -12,10 +12,10 @@ let currentSection = 0
 let start = null
 
 window.onload = () => {
-    if (typeof window.orientation !== 'undefined') { 
-        console.log('mobile device')
+    if (typeof window.orientation !== 'undefined') {
+        console.log('mobile device', window.navigator.userAgent)
         document.querySelector("body").style.overflow = "auto"
-     }
+    } else console.log('desktop', window.navigator.userAgent)
 }
 
 window.addEventListener('scroll', () => {
@@ -214,9 +214,9 @@ if (target.length) {
     }, 200));
 }
 
-elementTest = document.querySelector('.textTest')
+elementTest = document.querySelector('.text_services')
 Array.from('Meus Serviços').forEach(letra => elementTest.innerHTML += `<span class='letterHidden'>${letra}</span>`)
-letters = document.querySelectorAll('.textTest > span')
+letters = document.querySelectorAll('.text_services > span')
 
 function typeWriterTest() {
     letters.forEach((caracter, i) => {
