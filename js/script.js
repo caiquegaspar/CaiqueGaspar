@@ -11,6 +11,13 @@ const totalSections = document.querySelectorAll('.section').length
 let currentSection = 0
 let start = null
 
+window.onload = () => {
+    if (typeof window.orientation !== 'undefined') { 
+        console.log('mobile device')
+        document.querySelector("body").style.overflow = "auto"
+     }
+}
+
 window.addEventListener('scroll', () => {
     // let scrollPos = window.scrollY; //window.scrollY returns the number of pixels that the document is currently scrolled vertically.
     // container1.style.backgroundSize = `${scrollPos/50+100}%`
@@ -71,7 +78,7 @@ function goPrev() {
 function goNext() {
     currentSection++;
     if (currentSection > (totalSections - 1)) {
-        currentSection = 4;
+        currentSection = 3;
     }
     return document.getElementById(`container${currentSection}`).scrollIntoView();
 }

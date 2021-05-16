@@ -8,9 +8,7 @@
 }
 
 html {
-
     scroll-behavior: smooth;
-
 }
 
 body {
@@ -73,128 +71,17 @@ body {
 }
 
 .container1 {
-    background: url('../images/5.jpg') center center no-repeat fixed;
+    background: url('../images/5.png') bottom center no-repeat fixed;
     background-size: cover;
 }
 
 .container2 {
-    background: linear-gradient(135deg, transparent 0%, #131414 80%, #000000 100%), url('../images/6.jpg') center center no-repeat fixed;
-    background-size: cover;
-    display: flex;
-    flex-direction: row !important;
-    align-items: center !important;
-}
-
-.card {
-    position: relative;
-    width: 600px;
-    height: 350px;
-    margin: 20px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #d41e31, #491f8f)
-}
-
-.card img {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 400px;
-    transition: 0.5s;
-}
-
-.card:hover img {
-    left: 80%;
-    height: 500px;
-}
-
-.card .content {
-    position: relative;
-    width: 50%;
-    left: 20%;
-    padding: 20px 20px 20px 40px;
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.5s;
-}
-
-.card:hover .content {
-    opacity: 1;
-    visibility: visible;
-    left: 0;
-}
-
-.card .content h3 {
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 2.5em;
-    line-height: 1em;
-}
-
-.card .content p {
-    color: #fff;
-}
-
-.card .content a {
-    position: relative;
-    display: inline-block;
-    color: #111;
-    padding: 10px 20px;
-    border-radius: 10px;
-    background: #fff;
-    margin-top: 10px;
-    text-decoration: none;
-}
-
-@media (max-width: 991px) {
-    .container2 {
-        flex-direction: column !important;
-    }
-
-    .card {
-        position: relative;
-        width: auto;
-        max-width: 600px;
-        transition: 0.5s;
-        align-items: flex-start;
-    }
-
-    .card:hover {
-        height: 600px;
-    }
-
-    .card:hover img {
-        left: 50%;
-        height: 350px;
-    }
-
-    .card .content {
-        width: 100%;
-        left: 0;
-        padding: 40px;
-    }
-}
-
-@media (max-width: 420px) {
-    .card .content {
-        padding: 30px;
-    }
-
-    .card:hover img {
-        height: 300px;
-    }
-}
-
-.container3 {
     background: linear-gradient(135deg, transparent 0%, #131414 80%, #000000 100%), url('../images/7.jpg') center center no-repeat;
     background-size: cover;
     align-items: center !important;
 }
 
-.container4 {
+.container3 {
     background: linear-gradient(135deg, transparent 0%, #131414 80%, #000000 100%), url('../images/8.png') center center no-repeat;
     background-size: cover;
 }
@@ -338,13 +225,18 @@ header {
 
 .title1 {
     font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.title1 span {
+    color: #e20f2f;
 }
 
 .description {
     margin: 10px 0;
     text-align: center;
     width: 50%;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
 .btn {
@@ -1042,4 +934,77 @@ textarea.input {
 .letterVisible {
     visibility: visible;
     transition: 1s;
+}
+
+#footer {
+    background: transparent;
+    width: 100vw;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.footer-container {
+    margin-top: -70px;
+    padding: 30px 0;
+    font-size: .8em;
+    text-align: center;
+    color: #fff;
+}
+
+svg {
+    width: 17px;
+    fill: #ff4a4a;
+    margin: 0 3px;
+    vertical-align: middle;
+    animation: heart 1s infinite;
+}
+
+@keyframes heart {
+    0% {
+        fill: #fff;
+    }
+
+    50% {
+        fill: #ff4a4a;
+    }
+
+    100% {
+        fill: #fff;
+    }
+}
+
+.arrow-pulse-down:after {
+    content: "🡣";
+    /* Here you can change the style of the arrow */
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    font-size: 40px;
+    animation: arrow-pulse-down 1200ms linear infinite;
+}
+
+@keyframes arrow-pulse-down {
+    0% {
+        bottom: 40px;
+        opacity: 0;
+    }
+
+    25% {
+        opacity: .25;
+    }
+
+    50% {
+        opacity: .5;
+    }
+
+    75% {
+        opacity: .75;
+    }
+
+    100% {
+        bottom: 20px;
+        opacity: 1;
+    }
 }
