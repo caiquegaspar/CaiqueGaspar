@@ -485,11 +485,12 @@ header {
     text-align: right;
     flex-direction: column;
     display: flex;
-    background-color: rgba(255, 0, 1, 0.5);
+    background-color: rgba(255, 0, 0, 0.6);
     height: 100vh;
     width: 50%;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     transition: all 0.7s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
@@ -501,6 +502,7 @@ header {
     width: 50%;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     transition: all 0.7s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
@@ -521,7 +523,7 @@ header {
 
 .about:hover .about-title {
     font-size: 2em;
-    top: -65%;
+    top: -70%;
 }
 
 .skills:hover .skill-cards {
@@ -562,7 +564,7 @@ header {
 }
 
 .skill-card:hover .skill-card__header {
-    height: 40px;
+    height: 55px;
 }
 
 .skill-card:hover .skill-card__header .skill-card__icon {
@@ -605,7 +607,7 @@ header {
 
 .skill-card .skill-card__header {
     position: relative;
-    height: 170px !important;
+    height: 170px;
     margin: -20px -20px 20px -20px;
     transition: height .5s;
     overflow: hidden;
@@ -668,6 +670,20 @@ header {
     transform: translateX(-100%);
 }
 
+@media (max-width: 1200px) {
+    .container1 {
+        flex-direction: column;
+    }
+
+    .skills,
+    .about {
+        position: relative;
+        height: 50vh;
+        width: 100%;
+        overflow: hidden;
+    }
+}
+
 /* Terceiro Container (Serviços) */
 
 .container2 {
@@ -685,19 +701,41 @@ header {
     justify-content: space-around;
 }
 
-.container_services .card_services {
+.cards_services {
+    display: flex;
+    justify-content: center;
+}
+
+.card_services {
     position: relative;
     cursor: pointer;
     margin: 1%;
 }
 
-.container_services .card_services .face {
+.arrow {
+    position: absolute;
+    font-size: 90px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 2;
+    display: none !important;
+}
+
+.arrow-left {
+    left: 0;
+}
+
+.arrow-right {
+    right: 0;
+}
+
+.card_services .face {
     width: 300px;
     height: 200px;
     transition: 0.5s;
 }
 
-.container_services .card_services .face.face1 {
+.card_services .face.face1 {
     position: relative;
     background: #333;
     display: flex;
@@ -707,25 +745,25 @@ header {
     transform: translateY(100px);
 }
 
-.container_services .card_services:hover .face.face1 {
+.card_services:hover .face.face1 {
     background: #e20f2f;
     transform: translateY(0);
 }
 
-.container_services .card_services .face.face1 .content {
+.card_services .face.face1 .content {
     opacity: 0.2;
     transition: 0.5s;
 }
 
-.container_services .card_services:hover .face.face1 .content {
+.card_services:hover .face.face1 .content {
     opacity: 1;
 }
 
-.container_services .card_services .face.face1 .content img {
+.card_services .face.face1 .content img {
     max-width: 100px;
 }
 
-.container_services .card_services .face.face1 .content_services h3 {
+.card_services .face.face1 .content_services h3 {
     margin: 10px 0 0;
     padding: 0;
     color: #fff;
@@ -733,7 +771,7 @@ header {
     font-size: 1.3em;
 }
 
-.container_services .card_services .face.face2 {
+.card_services .face.face2 {
     position: relative;
     background: #fff;
     display: flex;
@@ -745,11 +783,11 @@ header {
     transform: translateY(-100px);
 }
 
-.container_services .card_services:hover .face.face2 {
+.card_services:hover .face.face2 {
     transform: translateY(0);
 }
 
-.container_services .card_services .face.face2 .content p {
+.card_services .face.face2 .content p {
     font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 0;
@@ -777,6 +815,21 @@ header {
 .letterVisible {
     visibility: visible;
     transition: 1s;
+}
+
+@media (max-width: 1200px) {
+    .cards_services {
+        overflow: hidden;
+        width: 300px;
+    }
+
+    .arrow-left {
+        display: inline-block !important;
+    }
+    
+    .arrow-right {
+        display: inline-block !important;
+    }
 }
 
 /* Quarto Container (Contato) */
