@@ -455,6 +455,7 @@ header {
 .container1 {
     background: url('../images/5.png') bottom center no-repeat fixed;
     background-size: cover;
+    height: 100vh;
     flex-direction: row-reverse;
     align-items: center;
 }
@@ -509,6 +510,7 @@ header {
 .about:hover,
 .skills:hover {
     width: 100%;
+    height: 100%;
 }
 
 .about:hover p,
@@ -677,10 +679,8 @@ header {
 
     .skills,
     .about {
-        position: relative;
-        height: 50vh;
-        width: 100%;
-        overflow: hidden;
+        height: 50%;
+        width: 100vw;
     }
 }
 
@@ -722,11 +722,11 @@ header {
 }
 
 .arrow-left {
-    left: 0;
+    left: -55px;
 }
 
 .arrow-right {
-    right: 0;
+    right: -55px;
 }
 
 .card_services .face {
@@ -826,7 +826,7 @@ header {
     .arrow-left {
         display: inline-block !important;
     }
-    
+
     .arrow-right {
         display: inline-block !important;
     }
