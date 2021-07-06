@@ -61,10 +61,8 @@ ul li a.active {
 
 .arrow-pulse-down {
     position: relative;
-    width: 100%;
     display: flex;
     justify-content: center;
-    bottom: -20px;
 }
 
 .fa-arrow-down {
@@ -268,6 +266,7 @@ header {
     font-family: 'Raleway', sans-serif;
     font-size: 3rem;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .title1 span {
@@ -277,7 +276,7 @@ header {
 .description {
     margin: 10px 0;
     text-align: center;
-    width: 50%;
+    width: 60%;
     font-size: 1.4rem;
 }
 
@@ -449,6 +448,16 @@ header {
 
 .container0.active .main:hover {
     transform: perspective(1300px) rotateY(20deg) translateY(10px) translateZ(340px) scale(0.5);
+}
+
+@media (max-width: 1200px) {
+    .title1 {
+        width: 70%;
+    }
+
+    .description {
+        width: 40%;
+    }
 }
 
 /* Segundo Container (Sobre) */
@@ -673,6 +682,11 @@ header {
     transform: translateX(-100%);
 }
 
+.container1 .arrow-pulse-down {
+    bottom: -52%;
+    left: 50%;
+}
+
 @media (max-width: 1200px) {
     .container1 {
         flex-direction: column;
@@ -682,6 +696,16 @@ header {
     .about {
         height: 50%;
         width: 100vw;
+    }
+
+    .about:hover,
+    .skills:hover {
+        height: 150%;
+    }
+
+    .container1 .arrow-pulse-down {
+        bottom: -3%;
+        left: 0;
     }
 }
 
@@ -819,7 +843,7 @@ header {
 }
 
 .container2 .arrow-pulse-down {
-    bottom: -90px;
+    bottom: -85px;
 }
 
 @media (max-width: 1200px) {
@@ -1224,7 +1248,7 @@ textarea.input {
 
 .footer-container {
     margin-top: -70px;
-    padding: 30px 0;
+    padding: 40px 0;
     font-size: .8em;
     text-align: center;
     color: #fff;
