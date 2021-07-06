@@ -23,7 +23,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
 }
 
 ul {
@@ -61,12 +60,15 @@ ul li a.active {
 }
 
 .arrow-pulse-down {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    bottom: -20px;
+}
+
+.fa-arrow-down {
     position: absolute;
-    width: 35px;
-    height: 35px;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
     font-size: 40px;
     animation: arrow-pulse-down 1200ms linear infinite;
 }
@@ -191,7 +193,6 @@ ul li a.active {
 
 .hamburger-menu {
     height: 4rem;
-    width: 3rem;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -815,6 +816,10 @@ header {
 .letterVisible {
     visibility: visible;
     transition: 1s;
+}
+
+.container2 .arrow-pulse-down {
+    bottom: -90px;
 }
 
 @media (max-width: 1200px) {
