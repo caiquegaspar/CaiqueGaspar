@@ -1,12 +1,13 @@
-const hamburger_menu = document.querySelector(".hamburger-menu");
-const container0 = document.querySelector(".container0");
-const container1 = document.querySelector(".container1");
-const links = document.querySelector(".links");
-const link = Array.from(document.querySelectorAll(".linkOption"));
-const sideMenuItensLi = document.querySelectorAll('.links2 li');
-const menuItems = document.querySelectorAll('.links a[href^="#"]');
-const sideMenuItens = document.querySelectorAll('.links2 a[href^="#"]');
-const btn1 = document.querySelector('.overlay a[href^="#"]');
+const hamburger_menu = document.querySelector(".hamburger-menu")
+const container0 = document.querySelector(".container0")
+const container1 = document.querySelector(".container1")
+const links = document.querySelector(".links")
+const link = Array.from(document.querySelectorAll(".linkOption"))
+const sideMenuItensLi = document.querySelectorAll('.links2 li')
+const sideHamburger_menu = document.querySelector('.links2 .hamburger-menu')
+const menuItems = document.querySelectorAll('.links a[href^="#"]')
+const sideMenuItens = document.querySelectorAll('.links2 a[href^="#"]')
+const btn1 = document.querySelector('.overlay a[href^="#"]')
 const totalSections = document.querySelectorAll('.section').length
 let currentSection = 0
 let start = null
@@ -14,7 +15,7 @@ let start = null
 window.onload = () => {
     if (typeof window.orientation !== 'undefined') {
         console.log('mobile device', window.navigator.userAgent)
-        document.querySelector("body").style.overflow = "auto"
+        // document.querySelector("body").style.overflow = "auto"
     } else console.log('desktop', window.navigator.userAgent)
 }
 
@@ -22,23 +23,48 @@ window.addEventListener('scroll', () => {
     // let scrollPos = window.scrollY; //window.scrollY returns the number of pixels that the document is currently scrolled vertically.
     // container1.style.backgroundSize = `${scrollPos/50+100}%`
 
-    if (window.pageYOffset === document.getElementById(`container0`).offsetTop) {
-        container0.classList.toggle("active");
-        sideMenuItensLi.forEach((item, index) => {
-            setTimeout(() => {
-                item.classList.add("hidden")
-                item.classList.remove("shown")
-            }, 50 * (index));
-        })
+    if (window.innerWidth < 1100) {
+        if (window.pageYOffset === document.getElementById(`container0`).offsetTop) {
+            container0.classList.toggle("active")
+            sideHamburger_menu.classList.add("hidden")
+            sideHamburger_menu.classList.remove("shown")
+            sideMenuItensLi.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add("hidden")
+                    item.classList.remove("shown")
+                }, 50 * (index));
+            })
+        } else {
+            container0.classList.remove("active")
+            sideHamburger_menu.classList.remove("hidden")
+            sideHamburger_menu.classList.add("shown")
+            sideMenuItensLi.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.remove("hidden")
+                    item.classList.add("shown")
+                }, 50 * (index))
+            })
+        }
     } else {
-        container0.classList.remove("active")
-        sideMenuItensLi.forEach((item, index) => {
-            setTimeout(() => {
-                item.classList.remove("hidden")
-                item.classList.add("shown")
-            }, 50 * (index))
-        })
+        if (window.pageYOffset === document.getElementById(`container0`).offsetTop) {
+            container0.classList.toggle("active")
+            sideMenuItensLi.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add("hidden")
+                    item.classList.remove("shown")
+                }, 50 * (index));
+            })
+        } else {
+            container0.classList.remove("active")
+            sideMenuItensLi.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.remove("hidden")
+                    item.classList.add("shown")
+                }, 50 * (index))
+            })
+        }
     }
+
 })
 
 hamburger_menu.addEventListener("click", () => {
