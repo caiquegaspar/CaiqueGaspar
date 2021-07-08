@@ -13,16 +13,18 @@ const totalSections = document.querySelectorAll('.section').length
 let currentSection = 0
 let start = null
 
+const actualHeight = window.innerHeight
+const elementHeight = document.getElementById('control-height').clientHeight
+const barHeight = elementHeight - actualHeight
+// document.querySelectorAll('.section').forEach(item => {item.style.height = `100vh - ${barHeight}px`})
+
 window.onload = () => {
     if (typeof window.orientation !== 'undefined') {
         console.log('mobile device', window.navigator.userAgent)
-        // document.querySelector("body").style.overflow = "auto"
     } else console.log('desktop', window.navigator.userAgent)
 }
 
 window.addEventListener('scroll', () => {
-    // let scrollPos = window.scrollY; //window.scrollY returns the number of pixels that the document is currently scrolled vertically.
-    // container1.style.backgroundSize = `${scrollPos/50+100}%`
 
     if (window.innerWidth < 1100) {
         if (window.pageYOffset === document.getElementById(`container0`).offsetTop) {
@@ -200,15 +202,8 @@ function scrollToPosition(to) {
         top: to,
         behavior: "smooth",
     })
-    // smoothScrollTo(0, to);
 }
 
-/*
- * Smooth scroll animation
- * @param {int} endX: destination x coordinate
- * @param {int) endY: destination y coordinate
- * @param {int} duration: animation duration in ms
- */
 function smoothScrollTo(endX, endY, duration) {
     const startX = window.scrollX || window.pageXOffset;
     const startY = window.scrollY || window.pageYOffset;
@@ -218,7 +213,6 @@ function smoothScrollTo(endX, endY, duration) {
 
     duration = typeof duration !== 'undefined' ? duration : 400;
 
-    // Easing function
     const easeInOutQuart = (time, from, distance, duration) => {
         if ((time /= duration / 2) < 1) return distance / 2 * time * time * time * time + from;
         return -distance / 2 * ((time -= 2) * time * time * time - 2) + from;
@@ -303,4 +297,33 @@ function sendEmail() {
             message => console.log(message)
         )
         .catch(error => console.log("error: " + error))
+}
+
+let currentSlide = 0;
+
+function goPrevCard(clickedElement) {
+    let ancorName = clickedElement.closest('div').getAttribute('id')
+    let totalSlides = document.querySelectorAll(`.${ancorName} .slide-container .slide .card`).length;
+    currentSlide--;
+    if (currentSlide < 0) {
+        currentSlide = totalSlides - 1;
+    }
+    updateMarginCard(ancorName);
+}
+
+function goNextCard(clickedElement) {
+    let ancorName = clickedElement.closest('div').getAttribute('id')
+    let totalSlides = document.querySelectorAll(`.${ancorName} .slide-container .slide .card`).length;
+    currentSlide++;
+    if (currentSlide > (totalSlides) - 1) {
+        currentSlide = 0;
+    }
+    updateMarginCard(ancorName);
+}
+
+function updateMarginCard(element) {
+    let sliderWidth = document.querySelector(`.${element} .slide-container .slide .card`).clientWidth;
+    let newMargin = (currentSlide * sliderWidth)
+    document.querySelector(`.${element} .slide-container .slide`).style.marginLeft =
+        `-${newMargin * 2}px`;
 }

@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi" />
+    <meta name="HandheldFriendly" content="True" />
     <title>Caíque | Dev Web</title>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <link rel="stylesheet" href="./css/style.css">
@@ -13,6 +15,7 @@
 </head>
 
 <body>
+    <div id="control-height"></div>
     <section class="section container0" id="container0">
         <div class="navbar">
             <div class="menu">
@@ -94,123 +97,128 @@
             </div>
         </div>
         <div class="skills">
-            <div class="skills-info" data-anime="left">
+            <div class="skills-info" id="skills-info" data-anime="left">
                 <h2 class="skills-title">Conhecimento</h2>
                 <p>Estou sempre atento ao mercado e lendo sobre as áreas envolvidas com meu dia a dia, incorporando
                     novas
                     tecnologias e métodos conforme as necessidades minhas e dos projetos.
                 </p>
-                <a class="fas fa-chevron-left arrow-left arrow"></a>
-                <div class="skill-cards">
-                    <div class="html-card">
-                        <div class="skill-card">
-                            <div class="skill-card__header"><img class="skill-card__icon" src="./images/html5.svg"
-                                    alt="HTML5 Logo" />
+                <a class="fas fa-chevron-left arrow-left arrow" onclick="goPrevCard(event.target)"></a>
+                <div class="skill-cards slide-container">
+                    <div class="slide-cards slide">
+                        <div class="html-card card">
+                            <div class="skill-card">
+                                <div class="skill-card__header"><img class="skill-card__icon" src="./images/html5.svg"
+                                        alt="HTML5 Logo" />
+                                </div>
+                                <section class="skill-card__body">
+                                    <h2 class="skill-card__title">html</h2><span class="skill-card__duration">2 anos de
+                                        experiência</span>
+                                    <ul class="skill-card__knowledge">
+                                        <li>HTML5</li>
+                                        <li>Semântica</li>
+                                        <li>SVG</li>
+                                        <li>Acessibilidade</li>
+                                    </ul>
+                                </section>
                             </div>
-                            <section class="skill-card__body">
-                                <h2 class="skill-card__title">html</h2><span class="skill-card__duration">2 anos de
-                                    experiência</span>
-                                <ul class="skill-card__knowledge">
-                                    <li>HTML5</li>
-                                    <li>Semântica</li>
-                                    <li>SVG</li>
-                                    <li>Acessibilidade</li>
-                                </ul>
-                            </section>
                         </div>
-                    </div>
-                    <div class="css-card">
-                        <div class="skill-card">
-                            <div class="skill-card__header"><img class="skill-card__icon" src="./images/css3.svg"
-                                    alt="HTML5 Logo" />
+                        <div class="css-card card">
+                            <div class="skill-card">
+                                <div class="skill-card__header"><img class="skill-card__icon" src="./images/css3.svg"
+                                        alt="HTML5 Logo" />
+                                </div>
+                                <section class="skill-card__body">
+                                    <h2 class="skill-card__title">css</h2><span class="skill-card__duration">2 anos de
+                                        experiência</span>
+                                    <ul class="skill-card__knowledge">
+                                        <li>CSS3</li>
+                                        <li>Semântica</li>
+                                        <li>Pré-processadores</li>
+                                        <li>Responsividade</li>
+                                    </ul>
+                                </section>
                             </div>
-                            <section class="skill-card__body">
-                                <h2 class="skill-card__title">css</h2><span class="skill-card__duration">2 anos de
-                                    experiência</span>
-                                <ul class="skill-card__knowledge">
-                                    <li>CSS3</li>
-                                    <li>Semântica</li>
-                                    <li>Pré-processadores</li>
-                                    <li>Responsividade</li>
-                                </ul>
-                            </section>
                         </div>
-                    </div>
-                    <div class="js-card">
-                        <div class="skill-card">
-                            <div class="skill-card__header"><img class="skill-card__icon" src="./images/javascript.svg"
-                                    alt="HTML5 Logo" />
+                        <div class="js-card card">
+                            <div class="skill-card">
+                                <div class="skill-card__header"><img class="skill-card__icon"
+                                        src="./images/javascript.svg" alt="HTML5 Logo" />
+                                </div>
+                                <section class="skill-card__body">
+                                    <h2 class="skill-card__title">javascript</h2><span class="skill-card__duration">2
+                                        anos
+                                        de
+                                        experiência</span>
+                                    <ul class="skill-card__knowledge">
+                                        <li>ECMAScript 6</li>
+                                        <li>Semântica</li>
+                                        <li>React</li>
+                                        <li>Canvas</li>
+                                    </ul>
+                                </section>
                             </div>
-                            <section class="skill-card__body">
-                                <h2 class="skill-card__title">javascript</h2><span class="skill-card__duration">2 anos
-                                    de
-                                    experiência</span>
-                                <ul class="skill-card__knowledge">
-                                    <li>ECMAScript 6</li>
-                                    <li>Semântica</li>
-                                    <li>React</li>
-                                    <li>Canvas</li>
-                                </ul>
-                            </section>
                         </div>
                     </div>
                 </div>
-                <a class="fas fa-chevron-right arrow-right arrow"></a>
+                <a class="fas fa-chevron-right arrow-right arrow" onclick="goNextCard(event.target)"></a>
             </div>
         </div>
         <div class="arrow-pulse-down"><i class="fas fa-arrow-down"></i></div>
     </section>
     <section class="section container2 info-section" id="container2">
         <h1 class="text_services"></h1>
-        <div class="container_services" data-anime="bottom">
-            <a class="fas fa-chevron-left arrow-left arrow"></a>
-            <div class="cards_services">
-                <div class="card_services">
-                    <div class="face face1">
-                        <div class="content_services">
-                            <img src="./images/design_128.png">
-                            <h3>Design</h3>
+        <div class="container_services" id="container_services" data-anime="bottom">
+            <a class="fas fa-chevron-left arrow-left arrow" onclick="goPrevCard(event.target)"></a>
+            <div class="cards_services slide-container">
+                <div class="slide-cards slide">
+                    <div class="card_services card">
+                        <div class="face face1">
+                            <div class="content_services">
+                                <img src="./images/design_128.png">
+                                <h3>Design</h3>
+                            </div>
+                        </div>
+                        <div class="face face2">
+                            <div class="content">
+                                <p>Planejamento e criação de layouts de websites, livre de erros, tendo a mesma
+                                    visibilidade em diferentes sistemas operacionais e navegadores.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="face face2">
-                        <div class="content">
-                            <p>Planejamento e criação de layouts de websites, livre de erros, tendo a mesma
-                                visibilidade em diferentes sistemas operacionais e navegadores.</p>
+                    <div class="card_services card">
+                        <div class="face face1">
+                            <div class="content_services">
+                                <img src="./images/code_128.png">
+                                <h3>Código</h3>
+                            </div>
+                        </div>
+                        <div class="face face2">
+                            <div class="content">
+                                <p>Desenvolvimento de websites e webapps com HTML, CSS e JavaScript responsivos,
+                                    landingpages, sites dinâmicos, boas praticas de otimização, usabilidade, SEO,
+                                    semântica e manutenções em geral.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card_services">
-                    <div class="face face1">
-                        <div class="content_services">
-                            <img src="./images/code_128.png">
-                            <h3>Código</h3>
+                    <div class="card_services card">
+                        <div class="face face1">
+                            <div class="content_services">
+                                <img src="./images/launch_128.png">
+                                <h3>Lançamento</h3>
+                            </div>
                         </div>
-                    </div>
-                    <div class="face face2">
-                        <div class="content">
-                            <p>Desenvolvimento de websites e webapps com HTML, CSS e JavaScript responsivos,
-                                landingpages, sites dinâmicos, boas praticas de otimização, usabilidade, SEO,
-                                semântica e manutenções em geral.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card_services">
-                    <div class="face face1">
-                        <div class="content_services">
-                            <img src="./images/launch_128.png">
-                            <h3>Lançamento</h3>
-                        </div>
-                    </div>
-                    <div class="face face2">
-                        <div class="content">
-                            <p>Desenvolvimento de aplicações e sistemas para web desde sua concepção, integração com
-                                API, planejamento
-                                e produção até sua implantação e controle.</p>
+                        <div class="face face2">
+                            <div class="content">
+                                <p>Desenvolvimento de aplicações e sistemas para web desde sua concepção, integração com
+                                    API, planejamento
+                                    e produção até sua implantação e controle.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <a class="fas fa-chevron-right arrow-right arrow"></a>
+            <a class="fas fa-chevron-right arrow-right arrow" onclick="goNextCard(event.target)"></a>
         </div>
         <div class="arrow-pulse-down"><i class="fas fa-arrow-down"></i></div>
     </section>

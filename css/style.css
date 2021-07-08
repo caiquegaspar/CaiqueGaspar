@@ -10,6 +10,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow: hidden;
+    height: 100%;
 }
 
 body {
@@ -96,6 +98,12 @@ ul li a.active {
     }
 }
 
+#control-height {
+    height: 100vh;
+    width: 0;
+    position: absolute;
+}
+
 /* Menu Lateral */
 
 .links2 {
@@ -118,7 +126,7 @@ ul li a.active {
     background-color: #e20f2f;
     width: 50px;
     height: 50px;
-	border-radius: 50%;
+    border-radius: 50%;
     margin: 10px 0;
 }
 
@@ -685,6 +693,13 @@ header {
     transform: translateX(-200%);
 }
 
+.skill-cards .slide-cards {
+    display: flex;
+    justify-content: center;
+    transition: 0.5s;
+    transform: translateX(0);
+}
+
 .skill-card {
     top: 180px;
     left: 120px;
@@ -867,9 +882,17 @@ header {
         width: 380px;
     }
 
+    .skill-card {
+        margin: 0;
+    }
+
+    .skill-cards .slide-cards {
+        transform: translateX(208px);
+    }
+
     .skill-cards {
         overflow: hidden;
-        width: 230px;
+        width: 208px;
     }
 
     .skills-info .arrow-left {
@@ -901,6 +924,13 @@ header {
 .cards_services {
     display: flex;
     justify-content: center;
+}
+
+.cards_services .slide-cards {
+    display: flex;
+    justify-content: center;
+    transition: 0.5s;
+    transform: translateX(0);
 }
 
 .card_services {
@@ -998,7 +1028,7 @@ header {
     font-size: 40px;
     max-width: 480px;
     text-align: center;
-    margin: 60px auto;
+    margin: 15px 0 60px 0;
     color: #fff;
     opacity: 1;
     height: 0;
@@ -1021,6 +1051,14 @@ header {
 @media (max-width: 1100px) {
     .card_services .face {
         width: 250px;
+    }
+
+    .card_services {
+        margin: 0;
+    }
+
+    .cards_services .slide-cards {
+        transform: translateX(250px);
     }
 
     .cards_services {
