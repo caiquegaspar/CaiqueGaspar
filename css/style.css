@@ -21,8 +21,11 @@ body {
     user-select: none;
 }
 
-.info-section {
+.section {
     min-height: 100vh;
+}
+
+.info-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -870,7 +873,7 @@ header {
     }
 
     .container1 .arrow-pulse-down {
-        bottom: -3%;
+        bottom: -15px;
         left: 0;
     }
 }
@@ -1045,7 +1048,7 @@ header {
 }
 
 .container2 .arrow-pulse-down {
-    bottom: -85px;
+    bottom: -265px;
 }
 
 @media (max-width: 1100px) {
@@ -1118,6 +1121,10 @@ form {
 .contact-form {
     background-color: #e20f2f;
     position: relative;
+}
+
+.contact-form b {
+    font-size: 10px;
 }
 
 .circle {

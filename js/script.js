@@ -285,18 +285,32 @@ inputs.forEach((input) => {
 });
 
 function sendEmail() {
-    Email.send({
-            SecureToken: "23951028-0acd-4d29-83be-59a21a309ec5",
-            To: "caiqsgaspar@hotmail.com",
-            From: "caiqsgaspar@gmail.com",
-            Subject: `Mensagem de contato de ${document.getElementById('email').value}`,
-            Body: `${document.getElementById('message').value}
-            ${document.getElementById('name').value}`,
-        })
-        .then(
-            message => console.log(message)
-        )
-        .catch(error => console.log("error: " + error))
+    let emailValidation = /\S+@\S+\.\S+/
+    let name = document.getElementById('name').value
+    let email = document.getElementById('email').value
+    let phone = document.getElementById('phone').value
+    let message = document.getElementById('message').value
+
+    if (email.match(emailValidation) && name !== '' && message !== '') {
+        Email.send({
+                SecureToken: "23951028-0acd-4d29-83be-59a21a309ec5",
+                To: "caiqsgaspar@hotmail.com",
+                From: "caiqsgaspar@gmail.com",
+                Subject: `Mensagem de contato de ${email}`,
+                Body: `${message}
+            ${name}
+            ${phone}`,
+            })
+            .then(
+                message => {
+                    alert("Email enviado com sucesso.")
+                    console.log(message)}
+            )
+            .catch(error => console.log("error: " + error))
+    } else {
+        alert("Preencha corretamente os campos obrigatórios!")
+    }
+
 }
 
 let currentSlide = 0;
