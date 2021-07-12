@@ -13,11 +13,6 @@ const totalSections = document.querySelectorAll('.section').length
 let currentSection = 0
 let start = null
 
-const actualHeight = window.innerHeight
-const elementHeight = document.getElementById('control-height').clientHeight
-const barHeight = elementHeight - actualHeight
-// document.querySelectorAll('.section').forEach(item => {item.style.height = `100vh - ${barHeight}px`})
-
 window.onload = () => {
     if (typeof window.orientation !== 'undefined') {
         console.log('mobile device', window.navigator.userAgent)
@@ -304,7 +299,8 @@ function sendEmail() {
             .then(
                 message => {
                     alert("Email enviado com sucesso.")
-                    console.log(message)}
+                    console.log(message)
+                }
             )
             .catch(error => console.log("error: " + error))
     } else {
@@ -312,6 +308,8 @@ function sendEmail() {
     }
 
 }
+
+document.querySelectorAll(`body`).style.height = `${window.innerHeight * totalSections}`
 
 let currentSlide = 0;
 
