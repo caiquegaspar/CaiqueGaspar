@@ -13,6 +13,21 @@ const totalSections = document.querySelectorAll('.section').length
 let currentSection = 0
 let start = null
 
+const debounce = function (func, wait, immediate) {
+    let timeout;
+    return function (...args) {
+        const context = this;
+        const later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+};
+
 window.onload = () => {
     if (typeof window.orientation !== 'undefined') {
         console.log('mobile device', window.navigator.userAgent)
@@ -92,84 +107,6 @@ links.addEventListener("click", (e) => {
     e.target.classList.add('active');
 })
 
-const debounce = function (func, wait, immediate) {
-    let timeout;
-    return function (...args) {
-        const context = this;
-        const later = function () {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-        };
-        const callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-    };
-};
-
-function goPrev() {
-    currentSection--;
-    if (currentSection < 0) {
-        currentSection = 0;
-    }
-    return document.getElementById(`container${currentSection}`).scrollIntoView();
-}
-
-function goNext() {
-    currentSection++;
-    if (currentSection > (totalSections - 1)) {
-        currentSection = 3;
-    }
-    return document.getElementById(`container${currentSection}`).scrollIntoView();
-}
-
-(() => {
-    arrayPositionSection = []
-    document.querySelectorAll('.section').forEach(item => {
-        objPair = {}
-        objPair[item.offsetTop] = item.getAttribute('id')
-        arrayPositionSection.push(objPair)
-    })
-    console.log(arrayPositionSection)
-})()
-
-function containerPosition() {
-    for (let i = 0; i < totalSections; i++) {
-        if (Math.ceil(window.pageYOffset) === document.getElementById(`container${i}`).offsetTop) {
-            currentSection = i
-        }
-    }
-}
-
-window.addEventListener('wheel', debounce((event) => {
-    containerPosition()
-
-    if (event.deltaY < 0) {
-        goPrev()
-        console.log('scrolling up');
-    } else if (event.deltaY > 0) {
-        goNext()
-        console.log('scrolling down');
-    }
-}, 200))
-
-window.addEventListener('touchstart', (event) => {
-    start = event.changedTouches[0];
-});
-
-
-window.addEventListener('touchend', (event) => {
-    let end = event.changedTouches[0];
-
-    if (end.screenY - start.screenY > 0) {
-        goPrev()
-        console.log('scrolling up');
-    } else if (end.screenY - start.screenY < 0) {
-        goNext()
-        console.log('scrolling down');
-    }
-});
-
 btn1.addEventListener('click', scrollToIdOnClick)
 
 menuItems.forEach(item => {
@@ -222,43 +159,7 @@ function smoothScrollTo(endX, endY, duration) {
         }
         window.scroll(newX, newY);
     }, 1000 / 60); // 60 fps
-};
-
-const target = document.querySelectorAll('[data-anime]');
-const animationClass = 'animate';
-
-function animeScroll() {
-    const windowTop = window.pageYOffset + (window.innerHeight * 0.75);
-    target.forEach(function (element) {
-        if ((windowTop) > element.offsetTop) {
-            element.classList.add(animationClass);
-        } else {
-            element.classList.remove(animationClass);
-        }
-    })
 }
-
-animeScroll();
-
-if (target.length) {
-    window.addEventListener('scroll', debounce(function () {
-        animeScroll();
-    }, 200));
-}
-
-elementTest = document.querySelector('.text_services')
-Array.from('Meus Serviços').forEach(letra => elementTest.innerHTML += `<span class='letterHidden'>${letra}</span>`)
-letters = document.querySelectorAll('.text_services > span')
-
-function typeWriterTest() {
-    letters.forEach((caracter, i) => {
-        setTimeout(() => {
-            caracter.classList.remove('letterHidden')
-            caracter.classList.add('letterVisible')
-        }, 60 * i)
-    });
-}
-typeWriterTest()
 
 const inputs = document.querySelectorAll(".input");
 
@@ -309,8 +210,6 @@ function sendEmail() {
 
 }
 
-document.querySelectorAll(`body`).style.height = `${window.innerHeight * totalSections}`
-
 let currentSlide = 0;
 
 function goPrevCard(clickedElement) {
@@ -338,4 +237,119 @@ function updateMarginCard(element) {
     let newMargin = (currentSlide * sliderWidth)
     document.querySelector(`.${element} .slide-container .slide`).style.marginLeft =
         `-${newMargin * 2}px`;
+}
+
+(() => {
+    arrayPositionSection = []
+    document.querySelectorAll('.section').forEach(item => {
+        objPair = {}
+        objPair[item.offsetTop] = item.getAttribute('id')
+        arrayPositionSection.push(objPair)
+    })
+    console.log(arrayPositionSection)
+})()
+
+const doc = document.documentElement
+doc.style.setProperty('--app-height', `${window.innerHeight}px`)
+
+let totalHeight = window.innerHeight * totalSections
+let sectionHeight = totalHeight / totalSections
+document.querySelector(`.fullpage`).style.height = `${totalHeight}px`
+document.querySelectorAll('.section').forEach(item => {
+    item.style.height = `${sectionHeight}px`
+})
+
+function goPrev() {
+    currentSection--;
+    if (currentSection < 0) {
+        currentSection = 0;
+    }
+
+    document.querySelectorAll('.section').forEach(item => {
+        if (item.classList.contains('activeSection')) {
+            item.classList.remove('activeSection')
+        }
+    })
+    document.getElementById(`container${currentSection}`).classList.add('activeSection')
+
+    document.querySelector(`.fullpage`).style.transform = `translate3d(0px, -${sectionHeight * currentSection}px, 0px)`
+
+    animeScroll()
+    typeWriterTest()
+}
+
+function goNext() {
+    currentSection++;
+    if (currentSection > (totalSections - 1)) {
+        currentSection = 3;
+    }
+
+    document.querySelectorAll('.section').forEach(item => {
+        if (item.classList.contains('activeSection')) {
+            item.classList.remove('activeSection')
+        }
+    })
+    document.getElementById(`container${currentSection}`).classList.add('activeSection')
+
+    document.querySelector(`.fullpage`).style.transform = `translate3d(0px, -${sectionHeight * currentSection}px, 0px)`
+
+    animeScroll()
+    typeWriterTest()
+}
+
+window.addEventListener('wheel', debounce((event) => {
+    if (event.deltaY < 0) {
+        goPrev()
+        console.log('scrolling up')
+    } else if (event.deltaY > 0) {
+        goNext()
+        console.log('scrolling down')
+    }
+}, 200))
+
+window.addEventListener('touchstart', (event) => {
+    start = event.changedTouches[0];
+});
+
+
+window.addEventListener('touchend', (event) => {
+    let end = event.changedTouches[0];
+
+    if (end.screenY - start.screenY > 0) {
+        goPrev()
+        console.log('scrolling up');
+    } else if (end.screenY - start.screenY < 0) {
+        goNext()
+        console.log('scrolling down');
+    }
+})
+
+const target = document.querySelectorAll('[data-anime]');
+const animationClass = 'animate';
+
+function animeScroll() {
+    target.forEach(function (element) {
+        if (element.closest('.section').classList.contains('activeSection')) {
+            setTimeout(() => {
+                element.classList.add(animationClass)
+            }, 900)
+        }
+    })
+}
+
+elementTest = document.querySelector('.text_services')
+Array.from('Meus Serviços').forEach(letra => elementTest.innerHTML += `<span class='letterHidden'>${letra}</span>`)
+letters = document.querySelectorAll('.text_services > span')
+
+function typeWriterTest() {
+    if (elementTest.closest('.section').classList.contains('activeSection')) {
+        setTimeout(() => {
+            letters.forEach((caracter, i) => {
+                setTimeout(() => {
+                    caracter.classList.remove('letterHidden')
+                    caracter.classList.add('letterVisible')
+                }, 60 * i)
+            })
+        }, 800)
+    }
 }

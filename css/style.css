@@ -8,6 +8,10 @@
     box-sizing: border-box;
 }
 
+:root {
+    --app-height: 100%;
+}
+
 html {
     scroll-behavior: smooth;
     overflow: hidden;
@@ -19,11 +23,19 @@ body {
     font-size: 16px;
     overflow: hidden;
     user-select: none;
+    height: 100%;
+}
+
+.fullpage {
+    position: relative;
+    overflow: hidden;
+    transition: all 800ms ease 0s;
 }
 
 .section {
     height: 100vh;
     max-height: -webkit-fill-available;
+    overflow: hidden;
 }
 
 .info-section {
@@ -306,7 +318,7 @@ ul li a.active {
 }
 
 header {
-    min-height: 100vh;
+    min-height: var(--app-height);
     width: 100%;
     background:
         /*url("pattern-photo.png") left top,*/
@@ -317,7 +329,7 @@ header {
 .overlay {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: var(--app-height);
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.712);
@@ -451,13 +463,14 @@ header {
 .shadow {
     position: absolute;
     width: 100%;
-    height: 100vh;
+    height: var(--app-height);
     top: 0;
     left: 0;
     transform-style: preserve-3d;
     transform-origin: left;
     transition: 0.5s;
     background-color: #fff;
+    overflow: hidden;
 }
 
 .shadow.one {
