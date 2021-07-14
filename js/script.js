@@ -34,133 +34,6 @@ window.onload = () => {
     } else console.log('desktop', window.navigator.userAgent)
 }
 
-window.addEventListener('scroll', () => {
-
-    if (window.innerWidth < 1100) {
-        if (window.pageYOffset === document.getElementById(`container0`).offsetTop) {
-            links2.style.zIndex = "-1"
-            container0.classList.toggle("active")
-            sideHamburger_menu.classList.add("hidden")
-            sideHamburger_menu.classList.remove("shown")
-            sideMenuItensLi.forEach((item, index) => {
-                setTimeout(() => {
-                    item.classList.add("hidden")
-                    item.classList.remove("shown")
-                }, 50 * (index));
-            })
-        } else {
-            links2.style.zIndex = "99"
-            container0.classList.remove("active")
-            sideHamburger_menu.classList.remove("hidden")
-            sideHamburger_menu.classList.add("shown")
-        }
-    } else {
-        if (window.pageYOffset === document.getElementById(`container0`).offsetTop) {
-            links2.style.zIndex = "-1"
-            container0.classList.toggle("active")
-            sideMenuItensLi.forEach((item, index) => {
-                setTimeout(() => {
-                    item.classList.add("hidden")
-                    item.classList.remove("shown")
-                }, 50 * (index));
-            })
-        } else {
-            links2.style.zIndex = "99"
-            container0.classList.remove("active")
-            sideMenuItensLi.forEach((item, index) => {
-                setTimeout(() => {
-                    item.classList.remove("hidden")
-                    item.classList.add("shown")
-                }, 50 * (index))
-            })
-        }
-    }
-
-})
-
-sideHamburger_menu.addEventListener("click", () => {
-    if (!document.querySelector(`.sideBubbleLink`).classList.contains('hidden')) {
-        sideMenuItensLi.forEach((item, index) => {
-            setTimeout(() => {
-                item.classList.add("hidden")
-                item.classList.remove("shown")
-            }, 50 * (index));
-        })
-    } else {
-        sideMenuItensLi.forEach((item, index) => {
-            setTimeout(() => {
-                item.classList.remove("hidden")
-                item.classList.add("shown")
-            }, 50 * (index))
-        })
-    }
-})
-
-hamburger_menu.addEventListener("click", () => {
-    container0.classList.toggle("active");
-})
-
-links.addEventListener("click", (e) => {
-    for (let i = 0; i < link.length; i++) {
-        link[i].classList.remove('active');
-    }
-    e.target.classList.add('active');
-})
-
-btn1.addEventListener('click', scrollToIdOnClick)
-
-menuItems.forEach(item => {
-    item.addEventListener('click', scrollToIdOnClick);
-});
-
-sideMenuItens.forEach(item => {
-    item.addEventListener('click', scrollToIdOnClick);
-});
-
-function getScrollTopByHref(element) {
-    const id = element.getAttribute('href');
-    return document.querySelector(id).offsetTop;
-}
-
-function scrollToIdOnClick(event) {
-    event.preventDefault();
-    const to = getScrollTopByHref(event.currentTarget) /*- 80*/ ;
-    scrollToPosition(to);
-    containerPosition()
-}
-
-function scrollToPosition(to) {
-    window.scroll({
-        top: to,
-        behavior: "smooth",
-    })
-}
-
-function smoothScrollTo(endX, endY, duration) {
-    const startX = window.scrollX || window.pageXOffset;
-    const startY = window.scrollY || window.pageYOffset;
-    const distanceX = endX - startX;
-    const distanceY = endY - startY;
-    const startTime = new Date().getTime();
-
-    duration = typeof duration !== 'undefined' ? duration : 400;
-
-    const easeInOutQuart = (time, from, distance, duration) => {
-        if ((time /= duration / 2) < 1) return distance / 2 * time * time * time * time + from;
-        return -distance / 2 * ((time -= 2) * time * time * time - 2) + from;
-    };
-
-    const timer = setInterval(() => {
-        const time = new Date().getTime() - startTime;
-        const newX = easeInOutQuart(time, startX, distanceX, duration);
-        const newY = easeInOutQuart(time, startY, distanceY, duration);
-        if (time >= duration) {
-            clearInterval(timer);
-        }
-        window.scroll(newX, newY);
-    }, 1000 / 60); // 60 fps
-}
-
 const inputs = document.querySelectorAll(".input");
 
 function focusFunc() {
@@ -276,6 +149,7 @@ function goPrev() {
 
     animeScroll()
     typeWriterTest()
+    hamburger_menu_animation()
 }
 
 function goNext() {
@@ -295,6 +169,7 @@ function goNext() {
 
     animeScroll()
     typeWriterTest()
+    hamburger_menu_animation()
 }
 
 window.addEventListener('wheel', debounce((event) => {
@@ -348,8 +223,97 @@ function typeWriterTest() {
                 setTimeout(() => {
                     caracter.classList.remove('letterHidden')
                     caracter.classList.add('letterVisible')
-                }, 60 * i)
+                }, 50 * i)
             })
         }, 800)
     }
+}
+
+function hamburger_menu_animation() {
+    setTimeout(() => {
+        if (window.innerWidth < 1100) {
+            if (document.getElementById(`container0`).classList.contains('activeSection')) {
+                links2.style.zIndex = "-1"
+                container0.classList.toggle("active")
+                sideHamburger_menu.classList.add("hidden")
+                sideHamburger_menu.classList.remove("shown")
+                sideMenuItensLi.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add("hidden")
+                        item.classList.remove("shown")
+                    }, 50 * (index));
+                })
+            } else {
+                links2.style.zIndex = "99"
+                container0.classList.remove("active")
+                sideHamburger_menu.classList.remove("hidden")
+                sideHamburger_menu.classList.add("shown")
+            }
+        } else {
+            if (document.getElementById(`container0`).classList.contains('activeSection')) {
+                links2.style.zIndex = "-1"
+                container0.classList.toggle("active")
+                sideMenuItensLi.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add("hidden")
+                        item.classList.remove("shown")
+                    }, 50 * (index));
+                })
+            } else {
+                links2.style.zIndex = "99"
+                container0.classList.remove("active")
+                sideMenuItensLi.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.remove("hidden")
+                        item.classList.add("shown")
+                    }, 50 * (index))
+                })
+            }
+        }
+    }, 800)
+}
+
+hamburger_menu.addEventListener("click", () => {
+    container0.classList.toggle("active");
+})
+
+links.addEventListener("click", (e) => {
+    for (let i = 0; i < link.length; i++) {
+        link[i].classList.remove('active');
+    }
+    e.target.classList.add('active');
+})
+
+sideHamburger_menu.addEventListener("click", () => {
+    if (!document.querySelector(`.sideBubbleLink`).classList.contains('hidden')) {
+        sideMenuItensLi.forEach((item, index) => {
+            setTimeout(() => {
+                item.classList.add("hidden")
+                item.classList.remove("shown")
+            }, 50 * (index));
+        })
+    } else {
+        sideMenuItensLi.forEach((item, index) => {
+            setTimeout(() => {
+                item.classList.remove("hidden")
+                item.classList.add("shown")
+            }, 50 * (index))
+        })
+    }
+})
+
+btn1.addEventListener('click', scrollToIdOnClick)
+
+menuItems.forEach(item => {
+    item.addEventListener('click', scrollToIdOnClick);
+});
+
+sideMenuItens.forEach(item => {
+    item.addEventListener('click', scrollToIdOnClick);
+});
+
+function scrollToIdOnClick(event) {
+    event.preventDefault()
+    const to = getScrollTopByHref(event.currentTarget) /*- 80*/
+    containerPosition()
 }

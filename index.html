@@ -15,9 +15,30 @@
 </head>
 
 <body>
-    <div id="control-height"></div>
+    <nav class="links2">
+        <div class="side-hamburger-menu hidden">
+            <div class="bar"></div>
+        </div>
+        <ul>
+            <li class="hidden sideBubbleLink">
+                <a href="#container0" class="linkOption" style="--i: 0.05s">Home</a>
+            </li>
+            <li class="separador hidden"></li>
+            <li class="hidden sideBubbleLink">
+                <a href="#container1" class="linkOption" style="--i: 0.1s">Sobre</a>
+            </li>
+            <li class="separador hidden"></li>
+            <li class="hidden sideBubbleLink">
+                <a href="#container2" class="linkOption" style="--i: 0.15s">Serviços</a>
+            </li>
+            <li class="separador hidden"></li>
+            <li class="hidden sideBubbleLink">
+                <a href="#container3" class="linkOption" style="--i: 0.2s">Contato</a>
+            </li>
+        </ul>
+    </nav>
     <div class="fullpage">
-        <section class="section container0" id="container0">
+        <section class="section container0" id="container0" data-anchor="0">
             <div class="navbar">
                 <div class="menu">
                     <i class="fas fa-code" style="font-size: 25px;"></i>
@@ -59,29 +80,7 @@
                 </ul>
             </nav>
         </section>
-        <nav class="links2">
-            <div class="side-hamburger-menu hidden">
-                <div class="bar"></div>
-            </div>
-            <ul>
-                <li class="hidden sideBubbleLink">
-                    <a href="#container0" class="linkOption" style="--i: 0.05s">Home</a>
-                </li>
-                <li class="separador hidden"></li>
-                <li class="hidden sideBubbleLink">
-                    <a href="#container1" class="linkOption" style="--i: 0.1s">Sobre</a>
-                </li>
-                <li class="separador hidden"></li>
-                <li class="hidden sideBubbleLink">
-                    <a href="#container2" class="linkOption" style="--i: 0.15s">Serviços</a>
-                </li>
-                <li class="separador hidden"></li>
-                <li class="hidden sideBubbleLink">
-                    <a href="#container3" class="linkOption" style="--i: 0.2s">Contato</a>
-                </li>
-            </ul>
-        </nav>
-        <section class="section container1 info-section" id="container1">
+        <section class="section container1 info-section" id="container1" data-anchor="1">
             <div class="about">
                 <div class="about-texts" data-anime="right">
                     <h2 class="about-title">Sobre Mim</h2>
@@ -171,7 +170,7 @@
             </div>
             <div class="arrow-pulse-down"><i class="fas fa-arrow-down"></i></div>
         </section>
-        <section class="section container2 info-section" id="container2">
+        <section class="section container2 info-section" id="container2" data-anchor="2">
             <h1 class="text_services"></h1>
             <div class="container_services" id="container_services" data-anime="bottom">
                 <a class="fas fa-chevron-left arrow-left arrow" onclick="goPrevCard(event.target)"></a>
@@ -228,7 +227,7 @@
             </div>
             <div class="arrow-pulse-down"><i class="fas fa-arrow-down"></i></div>
         </section>
-        <section class="section container3 info-section" id="container3">
+        <section class="section container3 info-section" id="container3" data-anchor="3">
             <div class="container_contact">
                 <span class="big-circle"></span>
                 <div class="form">
