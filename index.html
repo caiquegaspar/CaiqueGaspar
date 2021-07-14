@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
-        content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi" />
+        content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="HandheldFriendly" content="True" />
     <title>Caíque | Dev Web</title>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
@@ -21,19 +21,19 @@
         </div>
         <ul>
             <li class="hidden sideBubbleLink">
-                <a href="#container0" class="linkOption" style="--i: 0.05s">Home</a>
+                <a data-to="container0" onclick="scrollToIdOnClick(event.target)" class="linkOption" style="--i: 0.05s">Home</a>
             </li>
             <li class="separador hidden"></li>
             <li class="hidden sideBubbleLink">
-                <a href="#container1" class="linkOption" style="--i: 0.1s">Sobre</a>
+                <a data-to="container1" onclick="scrollToIdOnClick(event.target)" class="linkOption" style="--i: 0.1s">Sobre</a>
             </li>
             <li class="separador hidden"></li>
             <li class="hidden sideBubbleLink">
-                <a href="#container2" class="linkOption" style="--i: 0.15s">Serviços</a>
+                <a data-to="container2" onclick="scrollToIdOnClick(event.target)" class="linkOption" style="--i: 0.15s">Serviços</a>
             </li>
             <li class="separador hidden"></li>
             <li class="hidden sideBubbleLink">
-                <a href="#container3" class="linkOption" style="--i: 0.2s">Contato</a>
+                <a data-to="container3" onclick="scrollToIdOnClick(event.target)" class="linkOption" style="--i: 0.2s">Contato</a>
             </li>
         </ul>
     </nav>
@@ -56,7 +56,7 @@
                             </h1>
                             <p class="description">Aplicações completas, elegantes, com qualidade de código<br>e
                                 otimimizadas para o SEO.</p>
-                            <a href="#container1" class="btn">Conheça meu trabalho</a>
+                            <a data-to="container1" onclick="scrollToIdOnClick(event.target)" class="btn">Conheça meu trabalho</a>
                         </div>
                     </header>
                 </div>
@@ -66,16 +66,16 @@
             <nav class="links">
                 <ul>
                     <li>
-                        <a href="#container0" class="linkOption" style="--i: 0.05s">Home</a>
+                        <a data-to="container0" onclick="scrollToIdOnClick(event.target)" class="linkOption" style="--i: 0.05s">Home</a>
                     </li>
                     <li>
-                        <a href="#container1" class="linkOption" style="--i: 0.1s">Sobre</a>
+                        <a data-to="container1" onclick="scrollToIdOnClick(event.target)" class="linkOption" style="--i: 0.1s">Sobre</a>
                     </li>
                     <li>
-                        <a href="#container2" class="linkOption" style="--i: 0.15s">Serviços</a>
+                        <a data-to="container2" onclick="scrollToIdOnClick(event.target)" class="linkOption" style="--i: 0.15s">Serviços</a>
                     </li>
                     <li>
-                        <a href="#container3" class="linkOption" style="--i: 0.2s">Contato</a>
+                        <a data-to="container3" onclick="scrollToIdOnClick(event.target)" class="linkOption" style="--i: 0.2s">Contato</a>
                     </li>
                 </ul>
             </nav>

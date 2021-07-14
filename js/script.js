@@ -8,7 +8,7 @@ const sideMenuItensLi = document.querySelectorAll('.links2 li')
 const sideHamburger_menu = document.querySelector('.side-hamburger-menu')
 const menuItems = document.querySelectorAll('.links a[href^="#"]')
 const sideMenuItens = document.querySelectorAll('.links2 a[href^="#"]')
-const btn1 = document.querySelector('.overlay a[href^="#"]')
+const btn1 = document.querySelector('.overlay a')
 const totalSections = document.querySelectorAll('.section').length
 let currentSection = 0
 let start = null
@@ -302,18 +302,23 @@ sideHamburger_menu.addEventListener("click", () => {
     }
 })
 
-btn1.addEventListener('click', scrollToIdOnClick)
+function scrollToIdOnClick(element) {
+    let whereToScroll = element.getAttribute('data-to')
+    let position = document.getElementById(`${whereToScroll}`).offsetTop
+    let containerN = document.getElementById(`${whereToScroll}`).getAttribute('data-anchor')
 
-menuItems.forEach(item => {
-    item.addEventListener('click', scrollToIdOnClick);
-});
+    currentSection = containerN
 
-sideMenuItens.forEach(item => {
-    item.addEventListener('click', scrollToIdOnClick);
-});
+    document.querySelectorAll('.section').forEach(item => {
+        if (item.classList.contains('activeSection')) {
+            item.classList.remove('activeSection')
+        }
+    })
+    document.getElementById(`container${currentSection}`).classList.add('activeSection')
+    
+    document.querySelector(`.fullpage`).style.transform = `translate3d(0px, -${position}px, 0px)`
 
-function scrollToIdOnClick(event) {
-    event.preventDefault()
-    const to = getScrollTopByHref(event.currentTarget) /*- 80*/
-    containerPosition()
+    animeScroll()
+    typeWriterTest()
+    hamburger_menu_animation()
 }
