@@ -48,10 +48,6 @@ ul {
     list-style: none;
 }
 
-ul li a.active {
-    color: #e20f2f;
-}
-
 [data-anime] {
     opacity: 0;
     transition: .3s;
@@ -176,6 +172,12 @@ ul li a.active {
     display: block;
     border-radius: 20px;
     cursor: pointer;
+    transition: 0.5s;
+}
+
+.links2 a.active {
+    color: #e20f2f;
+    background: #fff;
 }
 
 .links2 .shown {
@@ -422,6 +424,10 @@ header {
     transform: translateY(10px);
     animation: hide 0.5s forwards ease;
     cursor: pointer;
+}
+
+.links a.active {
+    color: #e20f2f;
 }
 
 .links a:hover {

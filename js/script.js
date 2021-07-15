@@ -6,9 +6,6 @@ const links2 = document.querySelector(".links2")
 const link = Array.from(document.querySelectorAll(".linkOption"))
 const sideMenuItensLi = document.querySelectorAll('.links2 li')
 const sideHamburger_menu = document.querySelector('.side-hamburger-menu')
-const menuItems = document.querySelectorAll('.links a[href^="#"]')
-const sideMenuItens = document.querySelectorAll('.links2 a[href^="#"]')
-const btn1 = document.querySelector('.overlay a')
 const totalSections = document.querySelectorAll('.section').length
 let currentSection = 0
 let start = null
@@ -150,6 +147,7 @@ function goPrev() {
     animeScroll()
     typeWriterTest()
     hamburger_menu_animation()
+    activateMenuItem()
 }
 
 function goNext() {
@@ -170,6 +168,7 @@ function goNext() {
     animeScroll()
     typeWriterTest()
     hamburger_menu_animation()
+    activateMenuItem()
 }
 
 window.addEventListener('wheel', debounce((event) => {
@@ -277,13 +276,6 @@ hamburger_menu.addEventListener("click", () => {
     container0.classList.toggle("active");
 })
 
-links.addEventListener("click", (e) => {
-    for (let i = 0; i < link.length; i++) {
-        link[i].classList.remove('active');
-    }
-    e.target.classList.add('active');
-})
-
 sideHamburger_menu.addEventListener("click", () => {
     if (!document.querySelector(`.sideBubbleLink`).classList.contains('hidden')) {
         sideMenuItensLi.forEach((item, index) => {
@@ -301,6 +293,14 @@ sideHamburger_menu.addEventListener("click", () => {
         })
     }
 })
+
+function activateMenuItem() {
+    let sectionName = document.querySelector('.activeSection').getAttribute('id')
+    document.querySelectorAll(`[data-to`).forEach(item => item.classList.remove("active"))
+    document.querySelectorAll(`[data-to="${sectionName}"]`).forEach(item => item.classList.add("active"))
+}
+
+activateMenuItem()
 
 function scrollToIdOnClick(element) {
     let whereToScroll = element.getAttribute('data-to')
@@ -321,4 +321,5 @@ function scrollToIdOnClick(element) {
     animeScroll()
     typeWriterTest()
     hamburger_menu_animation()
+    activateMenuItem()
 }
