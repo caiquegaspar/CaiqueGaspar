@@ -33,6 +33,7 @@ body {
 }
 
 .section {
+    position: relative;
     height: 100vh;
     max-height: -webkit-fill-available;
     overflow: hidden;
@@ -75,9 +76,10 @@ ul {
 }
 
 .arrow-pulse-down {
-    position: relative;
+    position: absolute;
     display: flex;
     justify-content: center;
+    bottom: 0;
 }
 
 .fa-arrow-down {
@@ -868,7 +870,6 @@ header {
 }
 
 .container1 .arrow-pulse-down {
-    bottom: -52%;
     left: 50%;
 }
 
@@ -886,11 +887,6 @@ header {
     .about:hover,
     .skills:hover {
         height: 150%;
-    }
-
-    .container1 .arrow-pulse-down {
-        bottom: -15px;
-        left: 0;
     }
 }
 
@@ -1061,10 +1057,6 @@ header {
 .letterVisible {
     visibility: visible;
     transition: 1s;
-}
-
-.container2 .arrow-pulse-down {
-    bottom: -265px;
 }
 
 @media (max-width: 1100px) {
