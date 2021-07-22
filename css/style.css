@@ -321,7 +321,7 @@ header {
     width: 100%;
     background:
         /*url("pattern-photo.png") left top,*/
-        url("../images/image1.jpg") no-repeat top center / cover;
+        url("../images/image1.jpg") no-repeat center center / cover;
     position: relative;
 }
 
@@ -331,7 +331,7 @@ header {
     height: var(--app-height);
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.712);
+    background-color: rgba(0, 0, 0, 0.82);
     display: flex;
     justify-content: center;
     align-items: center;

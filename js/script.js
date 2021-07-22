@@ -7,7 +7,7 @@ const link = Array.from(document.querySelectorAll(".linkOption"))
 const sideMenuItensLi = document.querySelectorAll('.links2 li')
 const sideHamburger_menu = document.querySelector('.side-hamburger-menu')
 const totalSections = document.querySelectorAll('.section').length
-let currentSection = 3
+let currentSection = 0
 let start = null
 
 const debounce = function (func, wait, immediate) {
@@ -299,7 +299,7 @@ function activateMenuItem() {
     document.querySelectorAll(`[data-to`).forEach(item => item.classList.remove("active"))
     document.querySelectorAll(`[data-to="${sectionName}"]`).forEach(item => item.classList.add("active"))
 }
-document.querySelector(`.fullpage`).style.transform = `translate3d(0px, -${sectionHeight * currentSection}px, 0px)`
+// document.querySelector(`.fullpage`).style.transform = `translate3d(0px, -${sectionHeight * currentSection}px, 0px)`
 activateMenuItem()
 
 function scrollToIdOnClick(element) {
