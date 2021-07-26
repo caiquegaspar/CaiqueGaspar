@@ -609,6 +609,70 @@ header {
     }
 }
 
+@media (max-width: 480px) {
+    .links {
+        width: 41%;
+    }
+
+    .container0.active .main {
+        transform: perspective(1300px) rotateY(40deg) translateY(10px) translateZ(100px) scale(0.5);
+    }
+
+    @keyframes main-animation {
+        from {
+            transform: translate(0);
+        }
+
+        to {
+            transform: perspective(1300px) rotateY(40deg) translateY(10px) translateZ(100px) scale(0.5);
+        }
+    }
+
+    .container0.active .main:hover+.shadow.one {
+        transform: perspective(1300px) rotateY(40deg) translateY(10px) translateZ(90px) scale(0.5);
+    }
+
+    .container0.active .main:hover {
+        transform: perspective(1300px) rotateY(40deg) translateY(10px) translateZ(120px) scale(0.5);
+    }
+
+    .container0.active .shadow.one {
+        transform: perspective(1300px) rotateY(40deg) translateY(10px) translateZ(70px) scale(0.5);
+    }
+
+    @keyframes shadow-one {
+        0% {
+            transform: translate(0);
+        }
+
+        5% {
+            transform: perspective(1300px) rotateY(40deg) translateY(10px) translateZ(100px) scale(0.5);
+        }
+
+        100% {
+            transform: perspective(1300px) rotateY(40deg) translateY(10px) translateZ(70px) scale(0.5);
+        }
+    }
+
+    .container0.active .shadow.two {
+        transform: perspective(1300px) rotateY(40deg) translateY(10px) translateZ(40px) scale(0.5);
+    }
+
+    @keyframes shadow-two {
+        0% {
+            transform: translate(0);
+        }
+
+        20% {
+            transform: perspective(1300px) rotateY(40deg) translateY(10px) translateZ(100px) scale(0.5);
+        }
+
+        100% {
+            transform: perspective(1300px) rotateY(40deg) translateY(10px) translateZ(40px) scale(0.5);
+        }
+    }
+}
+
 /* Segundo Container (Sobre) */
 
 .container1 {
@@ -1171,7 +1235,7 @@ form {
     font-weight: 500;
     font-size: 1.5rem;
     line-height: 1;
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.9rem;
 }
 
 .input-container {
@@ -1307,6 +1371,13 @@ textarea.input {
     font-size: 0.95rem;
 }
 
+.information a {
+    display: flex;
+    color: #555;
+    align-items: center;
+    text-decoration: none;
+}
+
 .icon {
     width: 28px;
     margin-right: 0.7rem;
@@ -1439,13 +1510,29 @@ textarea.input {
 
     form,
     .contact-info {
-        padding: 1.7rem 1.6rem;
+        padding: 1rem 1.6rem;
     }
 
     .text,
     .information,
     .social-media p {
         font-size: 0.8rem;
+    }
+
+    .text {
+        margin: 0.5rem 0 0.5rem 0;
+    }
+
+    .input-container {
+        margin: 0.5rem 0;
+    }
+
+    textarea.input {
+        min-height: 65px;
+    }
+
+    .social-media {
+        padding: 0.5rem 0 0 0;
     }
 
     .title {
@@ -1475,7 +1562,8 @@ textarea.input {
     background: transparent;
     width: 100vw;
     font-family: 'Open Sans', sans-serif;
-    position: relative;
+    position: absolute;
+    bottom: 0;
     display: flex;
     justify-content: center;
 }
