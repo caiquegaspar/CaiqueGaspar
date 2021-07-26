@@ -629,11 +629,11 @@ header {
     }
 
     .container0.active .main:hover+.shadow.one {
-        transform: perspective(1300px) rotateY(40deg) translateY(10px) translateZ(90px) scale(0.5);
+        transform: perspective(1300px) rotateY(40deg) translateY(10px) translateZ(80px) scale(0.5);
     }
 
     .container0.active .main:hover {
-        transform: perspective(1300px) rotateY(40deg) translateY(10px) translateZ(120px) scale(0.5);
+        transform: perspective(1300px) rotateY(40deg) translateY(10px) translateZ(110px) scale(0.5);
     }
 
     .container0.active .shadow.one {
@@ -981,6 +981,12 @@ header {
     .skills-info .arrow-right {
         display: inline-block !important;
     }
+}
+
+@media (max-width: 480px) {
+    .skills-info, .about-texts {
+        width: 320px;
+    }    
 }
 
 /* Terceiro Container (Serviços) */
