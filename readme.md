@@ -9,7 +9,7 @@
 
 
 ### About me
-A passionate self-taught frontend developer. I’m currently learning Javascript stack { **Vue.js, NativeScript, NodeJs** }. Ask me about anything [Here](https://github.com/caiquegaspar/CaiqueGaspar/issues)
+A passionate self-taught frontend developer. I’m currently learning Javascript stack { **Vue.js, NativeScript, Quasar, Express, NodeJs** }. Ask me about anything [Here](https://github.com/caiquegaspar/CaiqueGaspar/issues)
 
 - [Website](https://caiquegaspar.pages.dev/) 💻 - Working on it.
 
