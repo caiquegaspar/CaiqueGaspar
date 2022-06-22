@@ -28,9 +28,16 @@ A passionate self-taught frontend developer. I’m currently learning Javascript
 ###
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=dracula&locale=en&hide_border=false&username=caiquegaspar" height="180" alt="caique gaspar's stats graph"  />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dracula&hide_border=false&username=caiquegaspar" 
-       height="180" alt="caique gaspar's languages graph"  />
+  <img 
+     src="https://github-readme-stats.vercel.app/api?hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=dracula&locale=en&hide_border=false&username=caiquegaspar" 
+     height="150" 
+     alt="caique gaspar's stats graph"  
+   />
+  <img 
+     src="https://github-readme-stats.vercel.app/api/top-langs?locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dracula&hide_border=false&username=caiquegaspar" 
+     height="150" 
+     alt="caique gaspar's languages graph"  
+   />
 </div>
 
 ###
