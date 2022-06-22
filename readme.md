@@ -1,4 +1,4 @@
-# Hi there, I'm Caíque Gaspar<img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px">
+# Hi there, I'm Caíque Gaspar <img height="30" src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif">
 
 [![Github Badge](https://img.shields.io/badge/-Github-000?style=flat-square&logo=Github&logoColor=white&link=https://github.com/caiquegaspar)](https://github.com/caiquegaspar)
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/caiquegaspar/)](https://www.linkedin.com/in/caiquegaspar/)
@@ -25,10 +25,14 @@ A passionate self-taught frontend developer. I’m currently learning Javascript
 
 ## ⚡ GitHub Stats
 
+###
 
-<p>
-  <img width="400em" height="180em" src="https://github-readme-stats.vercel.app/api?username=caiquegaspar&count_private=true&show_icons=true&include_all_commits=true&hide_border=true" alt="caique gaspar's github stats" />
-  <img width="400em" height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=caiquegaspar&layout=compact&hide_border=true"/>
-</p>
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=dracula&locale=en&hide_border=false&username=caiquegaspar" height="180" alt="caique gaspar's stats graph"  />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dracula&hide_border=false&username=caiquegaspar" 
+       height="180" alt="caique gaspar's languages graph"  />
+</div>
+
+###
 
 <i>NOTE: Top languages does not indicate my skill level or something like that, it's a github metric of which languages i have the most code on github, it's a new feature of github-readme</i>
