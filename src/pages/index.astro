@@ -19,7 +19,7 @@ const response = await request.json();
       <strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
     </p>
 
-    <CounterComponent prop={response.name} client:load />
+    <CounterComponent prop={response.abilities} client:load />
 
     <ul role="list" class="link-card-grid">
       <Card

@@ -1,8 +1,14 @@
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
 
+interface Ability {
+  ability: { name: string; url: string };
+  is_hidden: boolean;
+  slot: number;
+}
+
 const props = defineProps<{
-  prop: string;
+  prop: Ability[];
 }>();
 
 const arr = ["a", "b", "c"];
@@ -18,11 +24,12 @@ onMounted(async () => {
 
 <template>
   <div>
-    <button class="vue_btn" @click="count++">add</button>
+    <button class="vue_btn" @click="count++">Add</button>
     <h2>{{ count }}</h2>
-    <h2>{{ prop }}</h2>
     <div class="flex gap-4">
-      <h3 v-for="n in arr" :key="n">{{ n }}</h3>
+      <h3 v-for="ability in prop" :key="ability.slot">
+        {{ ability.ability.name }}
+      </h3>
     </div>
   </div>
 </template>
