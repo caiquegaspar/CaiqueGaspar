@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
+import CounterComponent from "../components/CounterComponent.vue";
 
 const request = await fetch("https://pokeapi.co/api/v2/pokemon/ditto");
 const response = await request.json();
@@ -8,12 +9,18 @@ const response = await request.json();
 
 <Layout title="Welcome to Astro.">
   <main>
-    <h1 class="flex">Welcome to <span class="text-gradient">Astro</span></h1>
+    <h1 class="whitespace-nowrap">
+      Welcome to <span class="text-gradient">Astro</span>
+    </h1>
     <h2 class="text-[#888] text_test">API response = {response.name}</h2>
+
     <p class="instructions">
       Check out the <code>src/pages</code> directory to get started.<br />
       <strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
     </p>
+
+    <CounterComponent prop={response.name} client:load />
+
     <ul role="list" class="link-card-grid">
       <Card
         href="https://docs.astro.build/"
@@ -99,6 +106,6 @@ const response = await request.json();
   }
 
   .text_test {
-	@apply font-bold;
+    @apply font-bold;
   }
 </style>
