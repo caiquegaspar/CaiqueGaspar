@@ -4,7 +4,7 @@
     id="container1"
     data-anchor="1"
   >
-    <div class="about">
+    <!-- <div class="about">
       <div class="about-texts" data-anime="right">
         <h2 class="about-title">Sobre Mim</h2>
         <p>
@@ -110,6 +110,6 @@
         ></a>
       </div>
     </div>
-    <div class="arrow-pulse-down"><i class="fas fa-arrow-down"></i></div>
+    <div class="arrow-pulse-down"><i class="fas fa-arrow-down"></i></div> -->
   </section>
 </template>
