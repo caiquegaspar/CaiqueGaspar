@@ -1,48 +1,44 @@
-# Welcome to [Astro](https://astro.build)
+# Hi there, I'm Caíque Gaspar <img height="30" src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif">
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
+[![Github Badge](https://img.shields.io/badge/-Github-000?style=flat-square&logo=Github&logoColor=white&link=https://github.com/caiquegaspar)](https://github.com/caiquegaspar)
+[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/caiquegaspar/)](https://www.linkedin.com/in/caiquegaspar/)
+[![Instagram Badge](https://img.shields.io/badge/-Instagram-purple?style=flat-square&logo=instagram&logoColor=white&link=https://instagram.com/caiquegaspar)](https://instagram.com/caiquegaspar)
+[![Hotmail Badge](https://img.shields.io/badge/-Hotmail-0078D4?style=flat-square&logo=microsoft-outlook&logoColor=white&link=mailto:caiqsgaspar@hotmail.com)](mailto:caiqsgaspar@hotmail.com)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Glad to see you here! &nbsp; ![](https://visitor-badge.glitch.me/badge?page_id=caiquegaspar.CaiqueGaspar)
 
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
+### About me
 
-## 🚀 Project Structure
+A passionate self-taught frontend developer. I’m currently learning Javascript stack { **Vue.js, NativeScript, Quasar, Express, NodeJs** }. Ask me about anything [Here](https://github.com/caiquegaspar/CaiqueGaspar/issues)
 
-Inside of your Astro project, you'll see the following folders and files:
+- [Website](https://caiquegaspar.pages.dev/) 💻 - Working on it.
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## 🚀💻 Technologies & Tools
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+<code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png"></code>
+<code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/css/css.png"></code>
+<code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png"></code>
+<code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png"></code>
+<code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png"></code>
+<code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png"></code>
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## ⚡ GitHub Stats
 
-Any static assets, like images, can be placed in the `public/` directory.
+###
 
-## 🧞 Commands
+<div align="center">
+  <img 
+     src="https://github-readme-stats.vercel.app/api?hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=dracula&locale=en&hide_border=false&username=caiquegaspar" 
+     height="150" 
+     alt="caique gaspar's stats graph"  
+   />
+  <img 
+     src="https://github-readme-stats.vercel.app/api/top-langs?locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dracula&hide_border=false&username=caiquegaspar" 
+     height="150" 
+     alt="caique gaspar's languages graph"  
+   />
+</div>
 
-All commands are run from the root of the project, from a terminal:
+###
 
-| Command                | Action                                             |
-| :--------------------- | :------------------------------------------------- |
-| `npm install`          | Installs dependencies                              |
-| `npm run dev`          | Starts local dev server at `localhost:3000`        |
-| `npm run build`        | Build your production site to `./dist/`            |
-| `npm run preview`      | Preview your build locally, before deploying       |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
-| `npm run astro --help` | Get help using the Astro CLI                       |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+<i>NOTE: Top languages does not indicate my skill level or something like that, it's a github metric of which languages i have the most code on github, it's a new feature of github-readme</i>
