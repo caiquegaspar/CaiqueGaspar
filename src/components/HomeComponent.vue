@@ -7,10 +7,10 @@ const expandSideBar = ref(false);
 </script>
 
 <template>
-  <section>
+  <section :class="{ active: expandSideBar }">
     <header>
       <TerminalIcon width="25" />
-      <h2 class="logo">Dev<span>Caíque</span></h2>
+      <h2 class="logo">Dev <span class="text-[#42b883]">Caíque</span></h2>
       <div
         class="hamburger_menu"
         :class="{ expanded: expandSideBar }"
@@ -22,76 +22,82 @@ const expandSideBar = ref(false);
       </div>
     </header>
 
-    <div class="main-container">
-      <div class="main">
-        <div class="header">
-          <div class="overlay">
-            <h1 class="title1">
-              Desenvolvimento de aplicações <span>web</span> e
-              <span>mobile</span>.
-            </h1>
-            <p class="description">
-              Aplicações completas, elegantes, com qualidade de código<br />e
-              otimimizadas para o SEO.
-            </p>
+    <main>
+      <div class="intro_container">
+        <div class="container_content">
+          <h1 class="title">
+            Desenvolvimento de aplicações <span>web</span> e
+            <span>mobile</span>.
+          </h1>
+
+          <p class="description">
+            Aplicações completas, elegantes, com qualidade de código e
+            otimimizadas para o SEO.
+          </p>
+
+          <button
+            data-to="container1"
+            onclick="scrollToIdOnClick(event.target)"
+            class="btn"
+          >
+            Conheça meu trabalho
+          </button>
+        </div>
+      </div>
+
+      <div class="shadow one"></div>
+      <div class="shadow two"></div>
+    </main>
+
+    <aside>
+      <nav class="links">
+        <ul>
+          <li>
+            <a
+              data-to="container0"
+              onclick="scrollToIdOnClick(event.target)"
+              class="linkOption"
+              style="--i: 0.05s"
+              >Home</a
+            >
+          </li>
+          <li>
             <a
               data-to="container1"
               onclick="scrollToIdOnClick(event.target)"
-              class="btn"
-              >Conheça meu trabalho</a
+              class="linkOption"
+              style="--i: 0.1s"
+              >Sobre</a
             >
-          </div>
-        </div>
-      </div>
-      <div class="shadow one"></div>
-      <div class="shadow two"></div>
-    </div>
-    <nav class="links">
-      <ul>
-        <li>
-          <a
-            data-to="container0"
-            onclick="scrollToIdOnClick(event.target)"
-            class="linkOption"
-            style="--i: 0.05s"
-            >Home</a
-          >
-        </li>
-        <li>
-          <a
-            data-to="container1"
-            onclick="scrollToIdOnClick(event.target)"
-            class="linkOption"
-            style="--i: 0.1s"
-            >Sobre</a
-          >
-        </li>
-        <li>
-          <a
-            data-to="container2"
-            onclick="scrollToIdOnClick(event.target)"
-            class="linkOption"
-            style="--i: 0.15s"
-            >Serviços</a
-          >
-        </li>
-        <li>
-          <a
-            data-to="container3"
-            onclick="scrollToIdOnClick(event.target)"
-            class="linkOption"
-            style="--i: 0.2s"
-            >Contato</a
-          >
-        </li>
-      </ul>
-    </nav>
+          </li>
+          <li>
+            <a
+              data-to="container2"
+              onclick="scrollToIdOnClick(event.target)"
+              class="linkOption"
+              style="--i: 0.15s"
+              >Serviços</a
+            >
+          </li>
+          <li>
+            <a
+              data-to="container3"
+              onclick="scrollToIdOnClick(event.target)"
+              class="linkOption"
+              style="--i: 0.2s"
+              >Contato</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </aside>
   </section>
 </template>
 
 <style scoped>
 section {
-  @apply relative h-screen max-h-screen w-full bg-cover overflow-hidden bg-home-gradient;
+  @apply font-['Raleway',sans-serif] relative h-screen max-h-screen w-full;
+  @apply bg-cover overflow-hidden bg-home-gradient preserve-3d;
 }
 
 header {
@@ -99,11 +105,7 @@ header {
 }
 
 .logo {
-  @apply font-['Raleway',sans-serif] font-[600] tracking-widest uppercase text-3xl;
-}
-
-.logo span {
-  @apply text-[#42b883] ml-2;
+  @apply font-[600] tracking-widest uppercase text-3xl text-[#fff];
 }
 
 .hamburger_menu {
@@ -126,75 +128,32 @@ header {
   @apply -translate-y-[0.6rem] rotate-[315deg];
 }
 
-.main-container {
-  overflow: hidden;
+.intro_container {
+  @apply origin-left transition duration-500 min-h-screen w-full bg-home-image;
 }
 
-.main {
-  position: relative;
-  width: 100%;
-  left: 0;
-  z-index: 5;
-  overflow: hidden;
-  transform-origin: left;
-  transform-style: preserve-3d;
-  transition: 0.5s;
+.container_content {
+  @apply absolute flex flex-col justify-center items-center w-full h-full;
+  @apply text-[#fff] top-0 left-0 bg-[#000000bf] text-center;
 }
 
-.header {
-  min-height: var(--app-height);
-  width: 100%;
-  background:
-        /*url("pattern-photo.png") left top,*/ url("../images/image1.jpg")
-    no-repeat center center / cover;
-  position: relative;
+.title {
+  @apply text-5xl mb-5;
 }
 
-.overlay {
-  position: absolute;
-  width: 100%;
-  height: var(--app-height);
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.82);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: #fff;
-}
-
-.title1 {
-  font-family: "Raleway", sans-serif;
-  font-size: 3rem;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.title1 span {
-  color: #e20f2f;
+.title span {
+  @apply text-[#42b883];
 }
 
 .description {
-  margin: 10px 0;
-  text-align: center;
-  width: 60%;
-  font-size: 1.4rem;
+  @apply max-w-2xl my-3 text-2xl;
 }
 
 .btn {
-  margin-top: 1rem;
-  padding: 0.6rem 1.8rem;
-  background-color: #e20f2f;
-  border: none;
-  border-radius: 25px;
-  color: #fff;
-  text-transform: uppercase;
-  cursor: pointer;
-  text-decoration: none;
+  @apply bg-[#42b883] mt-4 py-2 px-7 rounded-3xl uppercase font-[600];
 }
 
-.container0.active .main {
+section.active .intro_container {
   animation: main-animation 0.5s ease;
   cursor: pointer;
   transform: perspective(1300px) rotateY(20deg) translateY(10px)
@@ -250,7 +209,7 @@ header {
   color: #e20f2f;
 }
 
-.container0.active .links a {
+section.active .links a {
   animation: appear 0.5s forwards ease var(--i);
 }
 
@@ -301,7 +260,7 @@ header {
   opacity: 0.1;
 }
 
-.container0.active .shadow.one {
+section.active .shadow.one {
   animation: shadow-one 0.6s ease-out;
   transform: perspective(1300px) rotateY(20deg) translateY(10px)
     translateZ(215px) scale(0.5);
@@ -323,7 +282,7 @@ header {
   }
 }
 
-.container0.active .shadow.two {
+section.active .shadow.two {
   animation: shadow-two 0.6s ease-out;
   transform: perspective(1300px) rotateY(20deg) translateY(10px)
     translateZ(120px) scale(0.5);
@@ -345,12 +304,12 @@ header {
   }
 }
 
-.container0.active .main:hover + .shadow.one {
+section.active .intro_container:hover + .shadow.one {
   transform: perspective(1300px) rotateY(20deg) translateY(10px)
     translateZ(230px) scale(0.5);
 }
 
-.container0.active .main:hover {
+section.active .intro_container:hover {
   transform: perspective(1300px) rotateY(20deg) translateY(10px)
     translateZ(340px) scale(0.5);
 }
@@ -372,7 +331,7 @@ header {
     width: 36%;
   }
 
-  .container0.active .main {
+  section.active .intro_container {
     transform: perspective(1300px) rotateY(40deg) translateY(10px)
       translateZ(150px) scale(0.5);
   }
@@ -388,17 +347,17 @@ header {
     }
   }
 
-  .container0.active .main:hover + .shadow.one {
+  section.active .intro_container:hover + .shadow.one {
     transform: perspective(1300px) rotateY(40deg) translateY(10px)
       translateZ(125px) scale(0.5);
   }
 
-  .container0.active .main:hover {
+  section.active .intro_container:hover {
     transform: perspective(1300px) rotateY(40deg) translateY(10px)
       translateZ(160px) scale(0.5);
   }
 
-  .container0.active .shadow.one {
+  section.active .shadow.one {
     transform: perspective(1300px) rotateY(40deg) translateY(10px)
       translateZ(115px) scale(0.5);
   }
@@ -419,7 +378,7 @@ header {
     }
   }
 
-  .container0.active .shadow.two {
+  section.active .shadow.two {
     transform: perspective(1300px) rotateY(40deg) translateY(10px)
       translateZ(80px) scale(0.5);
   }
@@ -446,7 +405,7 @@ header {
     width: 41%;
   }
 
-  .container0.active .main {
+  section.active .intro_container {
     transform: perspective(1300px) rotateY(40deg) translateY(10px)
       translateZ(100px) scale(0.5);
   }
@@ -462,17 +421,17 @@ header {
     }
   }
 
-  .container0.active .main:hover + .shadow.one {
+  section.active .intro_container:hover + .shadow.one {
     transform: perspective(1300px) rotateY(40deg) translateY(10px)
       translateZ(80px) scale(0.5);
   }
 
-  .container0.active .main:hover {
+  section.active .intro_container:hover {
     transform: perspective(1300px) rotateY(40deg) translateY(10px)
       translateZ(110px) scale(0.5);
   }
 
-  .container0.active .shadow.one {
+  section.active .shadow.one {
     transform: perspective(1300px) rotateY(40deg) translateY(10px)
       translateZ(70px) scale(0.5);
   }
@@ -493,7 +452,7 @@ header {
     }
   }
 
-  .container0.active .shadow.two {
+  section.active .shadow.two {
     transform: perspective(1300px) rotateY(40deg) translateY(10px)
       translateZ(40px) scale(0.5);
   }
