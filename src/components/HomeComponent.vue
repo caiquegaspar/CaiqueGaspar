@@ -32,16 +32,10 @@ const expandSideBar = ref(false);
 
           <p class="description">
             Aplicações completas, elegantes, com qualidade de código e
-            otimimizadas para o SEO.
+            otimizadas para SEO.
           </p>
 
-          <button
-            data-to="container1"
-            onclick="scrollToIdOnClick(event.target)"
-            class="btn"
-          >
-            Conheça meu trabalho
-          </button>
+          <button class="intro_btn">Conheça meu trabalho</button>
         </div>
       </div>
 
@@ -53,40 +47,16 @@ const expandSideBar = ref(false);
       <nav class="links">
         <ul>
           <li>
-            <a
-              data-to="container0"
-              onclick="scrollToIdOnClick(event.target)"
-              class="linkOption"
-              style="--i: 0.05s"
-              >Home</a
-            >
+            <button style="--i: 0.05s">Home</button>
           </li>
           <li>
-            <a
-              data-to="container1"
-              onclick="scrollToIdOnClick(event.target)"
-              class="linkOption"
-              style="--i: 0.1s"
-              >Sobre</a
-            >
+            <button style="--i: 0.1s">Sobre</button>
           </li>
           <li>
-            <a
-              data-to="container2"
-              onclick="scrollToIdOnClick(event.target)"
-              class="linkOption"
-              style="--i: 0.15s"
-              >Serviços</a
-            >
+            <button style="--i: 0.15s">Serviços</button>
           </li>
           <li>
-            <a
-              data-to="container3"
-              onclick="scrollToIdOnClick(event.target)"
-              class="linkOption"
-              style="--i: 0.2s"
-              >Contato</a
-            >
+            <button style="--i: 0.2s">Contato</button>
           </li>
         </ul>
       </nav>
@@ -113,7 +83,7 @@ header {
 }
 
 .bar {
-  @apply w-8 h-[2px] rounded bg-[#eee] transition duration-500;
+  @apply w-8 h-[2px] rounded bg-[#fff] transition duration-500;
 }
 
 .hamburger_menu.expanded .bar:first-child {
@@ -138,7 +108,7 @@ header {
 }
 
 .title {
-  @apply text-5xl mb-5;
+  @apply text-3xl md:text-4xl lg:text-5xl mb-3 md:mb-5 w-[70%] lg:w-[80%];
 }
 
 .title span {
@@ -146,124 +116,70 @@ header {
 }
 
 .description {
-  @apply max-w-2xl my-3 text-2xl;
+  @apply my-3 w-2/5 lg:w-3/5 text-lg lg:text-2xl;
 }
 
-.btn {
+.intro_btn {
   @apply bg-[#42b883] mt-4 py-2 px-7 rounded-3xl uppercase font-[600];
 }
 
-section.active .intro_container {
-  animation: main-animation 0.5s ease;
-  cursor: pointer;
-  transform: perspective(1300px) rotateY(20deg) translateY(10px)
-    translateZ(310px) scale(0.5);
-}
-
-@keyframes main-animation {
-  from {
-    transform: translate(0);
-  }
-
-  to {
-    transform: perspective(1300px) rotateY(20deg) translateY(10px)
-      translateZ(310px) scale(0.5);
-  }
-}
-
 .links {
-  position: absolute;
-  width: 30%;
-  right: 0;
-  top: 0;
-  height: 100vh;
-  z-index: 2;
-  overflow: hidden;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-left: 10px;
+  @apply absolute w-[41%] sm:w-[36%] md:w-[30%] h-screen flex justify-start items-center right-0 top-0;
 }
 
-.links a {
-  text-decoration: none;
-  color: #eee;
-  margin: 0.7rem 0;
-  display: inline-block;
-  font-size: 1.8rem;
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: 0.3s;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: hide 0.5s forwards ease;
-  cursor: pointer;
+.links button {
+  @apply animate-[hide_.5s_forwards_ease] text-[#fff] my-3 uppercase font-[500] text-[1.8rem];
+  @apply transition duration-300 translate-y-[10px] opacity-0 tracking-wider;
 }
 
-.links a.active {
-  color: #e20f2f;
+.links button.active {
+  @apply text-[#42b883];
 }
 
-.links a:hover {
-  color: #e20f2f;
+.links button:hover {
+  @apply text-[#42b883];
 }
 
-section.active .links a {
-  animation: appear 0.5s forwards ease var(--i);
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
-
-@keyframes hide {
-  from {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-
-  to {
-    opacity: 0;
-    transform: translateY(10px);
-  }
+section.active .links button {
+  @apply animate-[appear_.5s_forwards_ease_var(--i)];
 }
 
 .shadow {
-  position: absolute;
-  width: 100%;
-  height: var(--app-height);
-  top: 0;
-  left: 0;
-  transform-style: preserve-3d;
-  transform-origin: left;
-  transition: 0.5s;
-  background-color: #fff;
-  overflow: hidden;
+  @apply absolute w-full h-full top-0 left-0 origin-left;
+  @apply bg-[#fff] overflow-hidden transition duration-500;
 }
 
 .shadow.one {
-  z-index: -1;
-  opacity: 0.15;
+  @apply -z-[1] opacity-[.15];
 }
 
 .shadow.two {
-  z-index: -2;
-  opacity: 0.1;
+  @apply -z-[2] opacity-[.1];
+}
+
+section.active .intro_container {
+  @apply perspective-[1300px] rotate-y-[40deg] md:rotate-y-[20deg] translate-y-[10px] scale-[.5];
+  @apply translate-z-[100px] sm:translate-z-[150px] md:translate-z-[310px];
 }
 
 section.active .shadow.one {
-  animation: shadow-one 0.6s ease-out;
-  transform: perspective(1300px) rotateY(20deg) translateY(10px)
-    translateZ(215px) scale(0.5);
+  @apply perspective-[1300px] rotate-y-[40deg] md:rotate-y-[20deg] translate-y-[10px] scale-[.5];
+  @apply translate-z-[70px] sm:translate-z-[115px] md:translate-z-[215px] animate-[shadow-one_.6s_ease-out];
+}
+
+section.active .shadow.two {
+  @apply perspective-[1300px] rotate-y-[40deg] md:rotate-y-[20deg] translate-y-[10px] scale-[.5];
+  @apply translate-z-[40px] sm:translate-z-[80px] md:translate-z-[120px] animate-[shadow-two_.6s_ease-in];
+}
+
+section.active .intro_container:hover + .shadow.one {
+  @apply perspective-[1300px] rotate-y-[40deg] md:rotate-y-[20deg] translate-y-[10px] scale-[.5];
+  @apply translate-z-[80px] sm:translate-z-[125px] md:translate-z-[230px];
+}
+
+section.active .intro_container:hover {
+  @apply perspective-[1300px] rotate-y-[40deg] md:rotate-y-[20deg] translate-y-[10px] scale-[.5];
+  @apply translate-z-[110px] sm:translate-z-[160px] md:translate-z-[340px];
 }
 
 @keyframes shadow-one {
@@ -272,20 +188,14 @@ section.active .shadow.one {
   }
 
   5% {
-    transform: perspective(1300px) rotateY(20deg) translateY(10px)
-      translateZ(310px) scale(0.5);
+    transform: perspective(1300px) rotateY(40deg) translateY(10px)
+      translateZ(100px) scale(0.5);
   }
 
   100% {
-    transform: perspective(1300px) rotateY(20deg) translateY(10px)
-      translateZ(215px) scale(0.5);
+    transform: perspective(1300px) rotateY(40deg) translateY(10px)
+      translateZ(70px) scale(0.5);
   }
-}
-
-section.active .shadow.two {
-  animation: shadow-two 0.6s ease-out;
-  transform: perspective(1300px) rotateY(20deg) translateY(10px)
-    translateZ(120px) scale(0.5);
 }
 
 @keyframes shadow-two {
@@ -294,74 +204,17 @@ section.active .shadow.two {
   }
 
   20% {
-    transform: perspective(1300px) rotateY(20deg) translateY(10px)
-      translateZ(310px) scale(0.5);
+    transform: perspective(1300px) rotateY(40deg) translateY(10px)
+      translateZ(100px) scale(0.5);
   }
 
   100% {
-    transform: perspective(1300px) rotateY(20deg) translateY(10px)
-      translateZ(120px) scale(0.5);
+    transform: perspective(1300px) rotateY(40deg) translateY(10px)
+      translateZ(40px) scale(0.5);
   }
 }
 
-section.active .intro_container:hover + .shadow.one {
-  transform: perspective(1300px) rotateY(20deg) translateY(10px)
-    translateZ(230px) scale(0.5);
-}
-
-section.active .intro_container:hover {
-  transform: perspective(1300px) rotateY(20deg) translateY(10px)
-    translateZ(340px) scale(0.5);
-}
-
-@media (max-width: 1100px) {
-  .title1 {
-    width: 70%;
-    font-size: 2rem;
-  }
-
-  .description {
-    width: 40%;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 850px) {
-  .links {
-    width: 36%;
-  }
-
-  section.active .intro_container {
-    transform: perspective(1300px) rotateY(40deg) translateY(10px)
-      translateZ(150px) scale(0.5);
-  }
-
-  @keyframes main-animation {
-    from {
-      transform: translate(0);
-    }
-
-    to {
-      transform: perspective(1300px) rotateY(40deg) translateY(10px)
-        translateZ(150px) scale(0.5);
-    }
-  }
-
-  section.active .intro_container:hover + .shadow.one {
-    transform: perspective(1300px) rotateY(40deg) translateY(10px)
-      translateZ(125px) scale(0.5);
-  }
-
-  section.active .intro_container:hover {
-    transform: perspective(1300px) rotateY(40deg) translateY(10px)
-      translateZ(160px) scale(0.5);
-  }
-
-  section.active .shadow.one {
-    transform: perspective(1300px) rotateY(40deg) translateY(10px)
-      translateZ(115px) scale(0.5);
-  }
-
+@media (min-width: 640px) {
   @keyframes shadow-one {
     0% {
       transform: translate(0);
@@ -376,11 +229,6 @@ section.active .intro_container:hover {
       transform: perspective(1300px) rotateY(40deg) translateY(10px)
         translateZ(115px) scale(0.5);
     }
-  }
-
-  section.active .shadow.two {
-    transform: perspective(1300px) rotateY(40deg) translateY(10px)
-      translateZ(80px) scale(0.5);
   }
 
   @keyframes shadow-two {
@@ -400,61 +248,21 @@ section.active .intro_container:hover {
   }
 }
 
-@media (max-width: 480px) {
-  .links {
-    width: 41%;
-  }
-
-  section.active .intro_container {
-    transform: perspective(1300px) rotateY(40deg) translateY(10px)
-      translateZ(100px) scale(0.5);
-  }
-
-  @keyframes main-animation {
-    from {
-      transform: translate(0);
-    }
-
-    to {
-      transform: perspective(1300px) rotateY(40deg) translateY(10px)
-        translateZ(100px) scale(0.5);
-    }
-  }
-
-  section.active .intro_container:hover + .shadow.one {
-    transform: perspective(1300px) rotateY(40deg) translateY(10px)
-      translateZ(80px) scale(0.5);
-  }
-
-  section.active .intro_container:hover {
-    transform: perspective(1300px) rotateY(40deg) translateY(10px)
-      translateZ(110px) scale(0.5);
-  }
-
-  section.active .shadow.one {
-    transform: perspective(1300px) rotateY(40deg) translateY(10px)
-      translateZ(70px) scale(0.5);
-  }
-
+@media (min-width: 768px) {
   @keyframes shadow-one {
     0% {
       transform: translate(0);
     }
 
     5% {
-      transform: perspective(1300px) rotateY(40deg) translateY(10px)
-        translateZ(100px) scale(0.5);
+      transform: perspective(1300px) rotateY(20deg) translateY(10px)
+        translateZ(310px) scale(0.5);
     }
 
     100% {
-      transform: perspective(1300px) rotateY(40deg) translateY(10px)
-        translateZ(70px) scale(0.5);
+      transform: perspective(1300px) rotateY(20deg) translateY(10px)
+        translateZ(215px) scale(0.5);
     }
-  }
-
-  section.active .shadow.two {
-    transform: perspective(1300px) rotateY(40deg) translateY(10px)
-      translateZ(40px) scale(0.5);
   }
 
   @keyframes shadow-two {
@@ -463,13 +271,14 @@ section.active .intro_container:hover {
     }
 
     20% {
-      transform: perspective(1300px) rotateY(40deg) translateY(10px)
-        translateZ(100px) scale(0.5);
+      transform: perspective(1300px) rotateY(20deg) translateY(10px)
+        translateZ(310px) scale(0.5);
     }
 
     100% {
-      transform: perspective(1300px) rotateY(40deg) translateY(10px)
-        translateZ(40px) scale(0.5);
+      transform: perspective(1300px) rotateY(20deg) translateY(10px)
+        translateZ(120px) scale(0.5);
+      --tw-rotate-y: 20deg;
     }
   }
 }

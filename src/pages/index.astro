@@ -9,7 +9,7 @@ const visible = true;
 <Layout title="Caíque | Dev Web">
   <main>
     {visible && <HomeComponent client:load />}
-    <AboutComponent />
+    {!visible && <AboutComponent client:load />}
   </main>
 </Layout>
 
