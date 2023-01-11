@@ -1,8 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 
 const plugin = require("tailwindcss/plugin");
+
 const homeOffice = "/src/assets/homeoffice.jpg";
 const image1 = "/src/assets/image1.jpg";
+const image2 = "/src/assets/5.png";
+
 const transformStyles =
   "perspective(var(--tw-perspective)) rotateY(var(--tw-rotate-y)) translate3d(var(--tw-translate-x), var(--tw-translate-y), var(--tw-translate-z))" +
   "rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))";
@@ -45,11 +48,17 @@ module.exports = {
         ".preserve-3d": {
           transformStyle: "preserve-3d",
         },
+
         ".bg-home-gradient": {
           backgroundImage: `linear-gradient(135deg, transparent 0%, #131414 80%, #000000 100%), url(${homeOffice})`,
         },
+
         ".bg-home-image": {
           background: `url(${image1}) no-repeat center center / cover`,
+        },
+
+        ".bg-about": {
+          background: `url(${image2}) bottom center no-repeat fixed`,
         },
       });
 
@@ -68,6 +77,13 @@ module.exports = {
           "rotate-y": (value) => ({
             "--tw-rotate-y": value,
             transform: transformStyles,
+          }),
+
+          "clip-path-circle": (value) => ({
+            "--tw-clip-path-circle-size": value.split(" ")[0],
+            "--tw-clip-path-circle-position-x": value.split(" ")[1],
+            "--tw-clip-path-circle-position-y": value.split(" ")[2],
+            "clip-path": `circle(var(--tw-clip-path-circle-size) at var(--tw-clip-path-circle-position-x) var(--tw-clip-path-circle-position-y))`,
           }),
         },
         { values: theme("translate"), supportsNegativeValues: true }

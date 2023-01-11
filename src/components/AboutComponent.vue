@@ -1,18 +1,55 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import type { SkillsInterface } from "types/skills.interface";
+
+import SkillCard from "components/SkillCard.vue";
+import ArrowIcon from "icons/ArrowIcon.vue";
+import HtmlIcon from "icons/HtmlIcon.vue";
+import CssIcon from "icons/CssIcon.vue";
+import JsIcon from "icons/JsIcon.vue";
+import TsIcon from "icons/TsIcon.vue";
+import VueIcon from "icons/VueIcon.vue";
+import NodeIcon from "icons/NodeIcon.vue";
+
+const fundamentalsSkills: SkillsInterface = {
+  title: "Fundamentos",
+  skills: [
+    { name: "html5", xp: "2 anos", color: "#ff6d00" },
+    { name: "css3", xp: "2 anos", color: "#039be5" },
+    { name: "javascript", xp: "2 anos", color: "#fdd83c" },
+  ],
+};
+const frontEndSkills: SkillsInterface = {
+  title: "Front End",
+  skills: [
+    { name: "vue", xp: "2 anos", color: "#41b883" },
+    { name: "typescript", xp: "1 ano e meio", color: "#3178c6" },
+    { name: "node", xp: "1 ano e meio", color: "#83cd29" },
+  ],
+};
+const backEndSkills: SkillsInterface = {
+  title: "Back End",
+  skills: [
+    { name: "html5", xp: "2 anos", color: "#ff6d00" },
+    { name: "css3", xp: "2 anos", color: "#039be5" },
+    { name: "javascript", xp: "2 anos", color: "#fdd83c" },
+  ],
+};
+</script>
 
 <template>
-  <section
-    class="section container1 info-section"
-    id="container1"
-    data-anchor="1"
-  >
-    <div class="about">
-      <div class="about-texts" data-anime="right">
-        <h2 class="about-title">Sobre Mim</h2>
+  <section>
+    <div class="about_container group">
+      <div class="container_content" data-anime="right">
+        <h2 class="title">Sobre Mim</h2>
+
         <p>
           Meu nome é Caíque Gaspar, sou um Programador Front-End (web e mobile)
           situado na capital de São Paulo. Trabalho desde 2019 no
           desenvolvimento para internet me focando na construção de interfaces.
+          <br />
+          Estou sempre atento ao mercado e lendo sobre as áreas envolvidas com
+          meu dia a dia, incorporando novas tecnologias e métodos conforme as
+          necessidades minhas e dos projetos.
           <br />
           Atualmente realizo trabalhos de construção de sites para agências de
           internet.
@@ -22,28 +59,58 @@
         </p>
       </div>
     </div>
-    <div class="skills">
-      <div class="skills-info" id="skills-info" data-anime="left">
-        <h2 class="skills-title">Conhecimento</h2>
-        <p>
+
+    <div class="skills_container group">
+      <div class="container_content" id="container_content" data-anime="left">
+        <h2 class="title">Conhecimento</h2>
+
+        <!-- <p>
           Estou sempre atento ao mercado e lendo sobre as áreas envolvidas com
           meu dia a dia, incorporando novas tecnologias e métodos conforme as
           necessidades minhas e dos projetos.
-        </p>
-        <a
+        </p> -->
+
+        <div class="skill-cards">
+          <SkillCard v-bind="fundamentalsSkills">
+            <template #card-icons>
+              <CssIcon />
+              <HtmlIcon />
+              <JsIcon />
+            </template>
+          </SkillCard>
+
+          <SkillCard v-bind="frontEndSkills">
+            <template #card-icons>
+              <VueIcon />
+              <NodeIcon />
+              <TsIcon />
+            </template>
+          </SkillCard>
+
+          <SkillCard v-bind="backEndSkills">
+            <template #card-icons>
+              <CssIcon />
+              <HtmlIcon />
+              <JsIcon />
+            </template>
+          </SkillCard>
+        </div>
+
+        <!-- <a
           class="fas fa-chevron-left arrow-left arrow"
           onclick="goPrevCard(event.target)"
-        ></a>
-        <div class="skill-cards slide-container">
-          <div class="slide-cards slide">
-            <div class="html-card card">
+        ></a> -->
+
+        <!-- <div class="skill-cards slide-container">
+          <div class="slide-cards slide"> -->
+        <!-- <div class="html-card card">
               <div class="skill-card">
                 <div class="skill-card__header">
-                  <!-- <img
+                  <img
                     class="skill-card__icon"
                     src="./images/html5.svg"
                     alt="HTML5 Logo"
-                  /> -->
+                  />
                 </div>
                 <section class="skill-card__body">
                   <h2 class="skill-card__title">html</h2>
@@ -58,15 +125,15 @@
                   </ul>
                 </section>
               </div>
-            </div>
-            <div class="css-card card">
+            </div> -->
+        <!-- <div class="css-card card">
               <div class="skill-card">
                 <div class="skill-card__header">
-                  <!-- <img
+                  <img
                     class="skill-card__icon"
                     src="./images/css3.svg"
                     alt="HTML5 Logo"
-                  /> -->
+                  />
                 </div>
                 <section class="skill-card__body">
                   <h2 class="skill-card__title">css</h2>
@@ -81,15 +148,15 @@
                   </ul>
                 </section>
               </div>
-            </div>
-            <div class="js-card card">
+            </div> -->
+        <!-- <div class="js-card card">
               <div class="skill-card">
                 <div class="skill-card__header">
-                  <!-- <img
+                  <img
                     class="skill-card__icon"
                     src="./images/javascript.svg"
                     alt="HTML5 Logo"
-                  /> -->
+                  />
                 </div>
                 <section class="skill-card__body">
                   <h2 class="skill-card__title">javascript</h2>
@@ -103,113 +170,82 @@
                   </ul>
                 </section>
               </div>
-            </div>
-          </div>
-        </div>
-        <a
+            </div> -->
+        <!-- </div>
+        </div> -->
+
+        <!-- <a
           class="fas fa-chevron-right arrow-right arrow"
           onclick="goNextCard(event.target)"
-        ></a>
+        ></a> -->
       </div>
     </div>
-    <div class="arrow-pulse-down"><i class="fas fa-arrow-down"></i></div>
+
+    <ArrowIcon class="arrow_down" />
   </section>
 </template>
 
 <style scoped>
-.container1 {
-  /* background: url("../images/5.png") bottom center no-repeat fixed; */
-  background-size: cover;
-  height: 100vh;
-  flex-direction: row-reverse;
-  align-items: center;
+section {
+  @apply font-['Raleway',sans-serif] relative h-screen max-h-screen w-full;
+  @apply bg-cover overflow-hidden flex flex-col items-center bg-about;
+  @apply lg:flex-row-reverse;
 }
 
-.container1 p {
-  opacity: 0;
-  transition: all 0.75s;
-  color: #fff;
-  margin: 0 0 5px 0;
+p {
+  @apply opacity-0 text-[#fff] transition-all duration-[.75s] text-base;
+  @apply group-hover:opacity-100;
 }
 
-.skills-title,
-.about-title {
-  font-family: "Raleway", sans-serif;
-  width: 100%;
-  height: 100%;
-  font-size: 3em;
-  transition: all 0.75s;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  top: 0;
+.title {
+  @apply w-full h-full text-[#fff] transition-all duration-[.75s];
+  @apply text-5xl absolute flex justify-center items-center;
+  @apply group-hover:text-3xl;
 }
 
-.about {
-  text-align: right;
-  flex-direction: column;
-  display: flex;
-  background-color: rgba(255, 0, 0, 0.6);
-  height: 100vh;
-  width: 50%;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  transition: all 0.7s cubic-bezier(0.55, 0, 0.1, 1);
+[data-anime="right"] .title {
+  @apply group-hover:-translate-y-[23%];
 }
 
-.skills {
-  flex-direction: column;
-  display: flex;
-  background-color: rgba(0, 0, 1, 0.5);
-  height: 100vh;
-  width: 50%;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  transition: all 0.7s cubic-bezier(0.55, 0, 0.1, 1);
+[data-anime="left"] .title {
+  @apply group-hover:-translate-y-[32%];
 }
 
-.about:hover,
-.skills:hover {
-  width: 100%;
-  height: 100%;
+:is(.about_container, .skills_container) {
+  @apply h-1/2 w-screen flex flex-col justify-center items-center relative;
+  @apply transition-all duration-[.7s] ease-[cubic-bezier(0.55,0,0.1,1)] overflow-hidden;
+  @apply hover:w-full hover:h-[150%] lg:w-1/2 lg:h-screen lg:hover:h-full;
 }
 
-.about:hover p,
-.skills:hover p {
-  opacity: 1;
+.about_container {
+  @apply bg-[rgba(66,184,131,0.6)] text-right;
 }
 
-.skills:hover .skills-title {
-  font-size: 2em;
-  top: -60%;
+.skills_container {
+  @apply bg-[rgba(0,0,0,0.5)];
 }
 
-.about:hover .about-title {
-  font-size: 2em;
-  top: -70%;
+.container_content {
+  @apply w-full flex flex-col justify-evenly items-center;
 }
 
-.skills:hover .skill-cards {
+.container_content p {
+  @apply w-80 sm:w-96 md:w-[40rem];
+}
+
+.arrow_down {
+  @apply absolute left-0 right-0 bottom-2 ml-auto mr-auto animate-bounce;
+  @apply p-2 w-10 h-10 shadow-lg rounded-full bg-[#fff];
+}
+
+.skill-cards {
+  @apply flex justify-evenly gap-4 transition-all duration-1000 opacity-0 -translate-x-[200%];
+  @apply group-hover:opacity-100 group-hover:translate-x-0 w-full;
+}
+
+/* .skills_container:hover .container_content .arrow {
   opacity: 1;
   transform: translateX(0);
-}
-
-.skills:hover .skills-info .arrow {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.skills-info,
-.about-texts {
-  width: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .skill-cards {
@@ -242,7 +278,7 @@
   left: 50%;
 }
 
-.skills-info .arrow {
+.container_content .arrow {
   position: absolute;
   font-size: 90px;
   color: #fff;
@@ -254,12 +290,12 @@
   transform: translateX(-500%);
 }
 
-.skills-info .arrow-left {
+.container_content .arrow-left {
   left: 0;
   top: 50%;
 }
 
-.skills-info .arrow-right {
+.container_content .arrow-right {
   right: 0;
   top: 50%;
 }
@@ -375,32 +411,7 @@
   transform: translateX(-100%);
 }
 
-.container1 .arrow-pulse-down {
-  left: 50%;
-}
-
-@media (max-width: 1100px) {
-  .container1 {
-    flex-direction: column;
-  }
-
-  .skills,
-  .about {
-    height: 50%;
-    width: 100vw;
-  }
-
-  .about:hover,
-  .skills:hover {
-    height: 150%;
-  }
-}
-
 @media (max-width: 850px) {
-  .skills-info,
-  .about-texts {
-    width: 380px;
-  }
 
   .skill-card {
     margin: 0;
@@ -415,19 +426,12 @@
     width: 208px;
   }
 
-  .skills-info .arrow-left {
+  .container_content .arrow-left {
     display: inline-block !important;
   }
 
-  .skills-info .arrow-right {
+  .container_content .arrow-right {
     display: inline-block !important;
   }
-}
-
-@media (max-width: 480px) {
-  .skills-info,
-  .about-texts {
-    width: 320px;
-  }
-}
+} */
 </style>

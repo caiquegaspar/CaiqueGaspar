@@ -182,6 +182,8 @@ section.active .intro_container:hover {
   @apply translate-z-[110px] sm:translate-z-[160px] md:translate-z-[340px];
 }
 
+/* animations that change based on viewport */
+
 @keyframes shadow-one {
   0% {
     transform: translate(0);
