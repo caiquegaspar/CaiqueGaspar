@@ -9,29 +9,32 @@ import JsIcon from "icons/JsIcon.vue";
 import TsIcon from "icons/TsIcon.vue";
 import VueIcon from "icons/VueIcon.vue";
 import NodeIcon from "icons/NodeIcon.vue";
+import PostGresIcon from "icons/PostGresIcon.vue";
+import ExpressIcon from "icons/ExpressIcon.vue";
+import GraphQlIcon from "icons/GraphQlIcon.vue";
 
 const fundamentalsSkills: SkillsInterface = {
   title: "Fundamentos",
   skills: [
-    { name: "html5", xp: "2 anos", color: "#ff6d00" },
-    { name: "css3", xp: "2 anos", color: "#039be5" },
-    { name: "javascript", xp: "2 anos", color: "#fdd83c" },
+    { name: "html5", xp: "3 anos", color: "#ff6d00" },
+    { name: "css3", xp: "3 anos", color: "#039be5" },
+    { name: "javascript", xp: "3 anos", color: "#fdd83c" },
   ],
 };
 const frontEndSkills: SkillsInterface = {
   title: "Front End",
   skills: [
-    { name: "vue", xp: "2 anos", color: "#41b883" },
-    { name: "typescript", xp: "1 ano e meio", color: "#3178c6" },
-    { name: "node", xp: "1 ano e meio", color: "#83cd29" },
+    { name: "node", xp: "2 anos", color: "#83cd29" },
+    { name: "vue", xp: "2 anos e meio", color: "#41b883" },
+    { name: "typescript", xp: "2 anos", color: "#3178c6" },
   ],
 };
 const backEndSkills: SkillsInterface = {
   title: "Back End",
   skills: [
-    { name: "html5", xp: "2 anos", color: "#ff6d00" },
-    { name: "css3", xp: "2 anos", color: "#039be5" },
-    { name: "javascript", xp: "2 anos", color: "#fdd83c" },
+    { name: "express", xp: "1 ano e meio", color: "#000" },
+    { name: "graphql", xp: "1 ano e meio", color: "#E535AB" },
+    { name: "postgressql", xp: "1 ano", color: "#336791" },
   ],
 };
 </script>
@@ -44,7 +47,7 @@ const backEndSkills: SkillsInterface = {
 
         <p>
           Meu nome é Caíque Gaspar, sou um Programador Front-End (web e mobile)
-          situado na capital de São Paulo. Trabalho desde 2019 no
+          situado na capital de São Paulo. Trabalho desde 2020 no
           desenvolvimento para internet me focando na construção de interfaces.
           <br />
           Estou sempre atento ao mercado e lendo sobre as áreas envolvidas com
@@ -89,9 +92,9 @@ const backEndSkills: SkillsInterface = {
 
           <SkillCard v-bind="backEndSkills">
             <template #card-icons>
-              <CssIcon />
-              <HtmlIcon />
-              <JsIcon />
+              <GraphQlIcon />
+              <ExpressIcon />
+              <PostGresIcon />
             </template>
           </SkillCard>
         </div>
@@ -194,13 +197,13 @@ section {
 
 p {
   @apply opacity-0 text-[#fff] transition-all duration-[.75s] text-base;
-  @apply group-hover:opacity-100;
+  @apply font-semibold group-hover:opacity-100;
 }
 
 .title {
   @apply w-full h-full text-[#fff] transition-all duration-[.75s];
   @apply text-5xl absolute flex justify-center items-center;
-  @apply group-hover:text-3xl;
+  @apply group-hover:text-4xl;
 }
 
 [data-anime="right"] .title {

@@ -86,11 +86,11 @@ const cardBackText = computed(() => JSON.stringify(props.title));
 }
 
 .content_box .skills h3 {
-  @apply text-[#fff] font-[600] text-[14px] uppercase tracking-[2px];
+  @apply text-[#fff] font-[600] text-[14px] uppercase tracking-[2px] mb-[4px];
 }
 
 .content_box .skills .skill_item {
-  @apply flex justify-center items-center gap-1;
+  @apply flex justify-center items-center gap-1 max-w-[95%];
 }
 
 .content_box .skills .skill_item > span {
@@ -102,6 +102,6 @@ const cardBackText = computed(() => JSON.stringify(props.title));
 }
 
 .content_box .skills .skill_item > h4 {
-  @apply text-[#fff] font-[600] text-[12px] uppercase tracking-[2px];
+  @apply text-[#fff] font-[600] text-[12px] uppercase tracking-[2px] truncate;
 }
 </style>
