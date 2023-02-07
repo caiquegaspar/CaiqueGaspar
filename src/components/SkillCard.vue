@@ -9,7 +9,7 @@ const cardBackText = computed(() => JSON.stringify(props.title));
 </script>
 
 <template>
-  <div class="card group">
+  <div class="card">
     <div class="img_box">
       <slot name="card-icons"></slot>
     </div>
