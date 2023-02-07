@@ -3,7 +3,6 @@ if [ "$CF_PAGES_BRANCH" == "main" ]; then
 
     if [ ! -d $directory ]; then
         mkdir -p $directory
-
         cp index.html $directory
         cp -r css images js $directory
     fi
