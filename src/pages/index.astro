@@ -1,16 +1,10 @@
 ---
 import Layout from "layouts/Layout.astro";
-import HomeComponent from "components/HomeComponent.vue";
-import AboutComponent from "components/AboutComponent.vue";
-
-const visible: boolean = false;
+import IndexPage from "./IndexPage.vue";
 ---
 
 <Layout title="Caíque | Dev Web">
-  <main>
-    {visible && <HomeComponent client:load />}
-    {!visible && <AboutComponent client:load />}
-  </main>
+  <IndexPage client:load />
 </Layout>
 
 <style>

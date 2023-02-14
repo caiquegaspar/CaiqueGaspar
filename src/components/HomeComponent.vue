@@ -66,7 +66,7 @@ const expandSideBar = ref(false);
 
 <style scoped>
 section {
-  @apply font-['Raleway',sans-serif] relative h-screen max-h-screen w-full;
+  @apply absolute top-0 left-0 h-full w-full bg-white;
   @apply bg-cover overflow-hidden bg-home-gradient preserve-3d;
 }
 

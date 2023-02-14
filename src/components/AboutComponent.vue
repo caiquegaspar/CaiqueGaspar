@@ -42,6 +42,12 @@ const backEndSkills: SkillsInterface = {
 };
 
 const activeCard = ref<number>(0);
+
+const goToPrevious = () =>
+  (activeCard.value = Math.min(Math.max(--activeCard.value, 0), 2));
+
+const goToNext = () =>
+  (activeCard.value = Math.min(Math.max(++activeCard.value, 0), 2));
 </script>
 
 <template>
@@ -110,18 +116,10 @@ const activeCard = ref<number>(0);
 
           <div class="carousel_arrows">
             <button class="arrow_left">
-              <DirectionIcon
-                width="120"
-                :rotate="90"
-                @click="activeCard = Math.min(Math.max(--activeCard, 0), 2)"
-              />
+              <DirectionIcon width="120" :rotate="90" @click="goToPrevious" />
             </button>
             <button class="arrow_right">
-              <DirectionIcon
-                width="120"
-                :rotate="270"
-                @click="activeCard = Math.min(Math.max(++activeCard, 0), 2)"
-              />
+              <DirectionIcon width="120" :rotate="270" @click="goToNext" />
             </button>
           </div>
         </div>
@@ -134,9 +132,8 @@ const activeCard = ref<number>(0);
 
 <style scoped>
 section {
-  @apply font-['Raleway',sans-serif] relative h-screen max-h-screen w-full;
-  @apply bg-cover overflow-hidden flex flex-col items-center bg-about;
-  @apply xl:flex-row-reverse;
+  @apply absolute top-0 left-0 h-full w-full bg-white bg-cover overflow-hidden;
+  @apply flex flex-col items-center bg-about xl:flex-row-reverse;
 }
 
 p {
@@ -181,8 +178,8 @@ p {
 }
 
 .arrow_down {
-  @apply absolute left-auto xl:left-0 right-3 xl:right-0 bottom-2 ml-auto mr-auto animate-bounce;
-  @apply p-2 w-10 h-10 shadow-lg rounded-full bg-[#fff];
+  @apply absolute left-auto xl:left-0 right-3 xl:right-0 bottom-2 ml-auto;
+  @apply mr-auto animate-bounce p-2 w-10 h-10 shadow-lg rounded-full bg-[#fff];
 }
 
 .carousel_cards {
