@@ -1,34 +1,58 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
-import HomeComponent from "components/HomeComponent.vue";
-import AboutComponent from "components/AboutComponent.vue";
+import HomeComponent from "@components/HomeComponent.vue";
+import AboutComponent from "@components/AboutComponent.vue";
 
-const test = ref<number>(0);
+const directions: { [key: string]: number } = { previous: -100, next: 100 };
+
+const pagePos = ref<number>(0);
+
+const changeSection = (direction: string) =>
+  (pagePos.value += directions[direction]);
+
+const debounce = (func, wait, immediate) => {
+  let timeout;
+
+  return (...args) => {
+    const context = this;
+
+    const later = () => {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+
+    const callNow = immediate && !timeout;
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+
+    if (callNow) func.apply(context, args);
+  };
+};
+
+onMounted(() => {
+  const arrayPositionSection = [];
+
+  document.querySelectorAll(".section_page").forEach((item) => {
+    const objPair = {};
+    objPair[item.offsetTop] = item.getAttribute("id");
+    arrayPositionSection.push(objPair);
+  });
+
+  console.log(arrayPositionSection);
+});
 </script>
 
 <template>
-  <main>
-    <HomeComponent
-      class="section_page"
-      style="--z: 4"
-      :style="`transform: translateY(-${test}vh)`"
-    />
-    <AboutComponent class="section_page" style="--z: 3" />
-
-    <div class="fixed flex gap-2 top-0 left-0 z-50">
-      <button class="bg-white p-4" @click="test = 100">up</button>
-      <button class="bg-white p-4" @click="test = 0">down</button>
-    </div>
+  <main :style="`transform: translateY(-${pagePos}vh)`">
+    <HomeComponent class="section_page" @changeSection="changeSection" />
+    <AboutComponent class="section_page" @changeSection="changeSection" />
   </main>
 </template>
 
 <style scoped>
 main {
-  @apply relative h-screen w-screen font-['Raleway',sans-serif];
-}
-
-main .section_page {
-  @apply transition-all duration-300 z-[calc(var(--z)*10)];
+  @apply absolute h-screen w-screen font-['Raleway',sans-serif] transition-all duration-500;
 }
 </style>

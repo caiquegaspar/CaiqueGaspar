@@ -1,9 +1,13 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import TerminalIcon from "icons/TerminalIcon.vue";
+import TerminalIcon from "@icons/TerminalIcon.vue";
+
+const emit = defineEmits<{ (e: "changeSection", val: string): void }>();
 
 const expandSideBar = ref(false);
+
+const changeSection = () => emit("changeSection", "next");
 </script>
 
 <template>
@@ -35,7 +39,9 @@ const expandSideBar = ref(false);
             otimizadas para SEO.
           </p>
 
-          <button class="intro_btn">Conheça meu trabalho</button>
+          <button class="intro_btn" @click="changeSection">
+            Conheça meu trabalho
+          </button>
         </div>
       </div>
 
@@ -66,8 +72,8 @@ const expandSideBar = ref(false);
 
 <style scoped>
 section {
-  @apply absolute top-0 left-0 h-full w-full bg-white;
-  @apply bg-cover overflow-hidden bg-home-gradient preserve-3d;
+  @apply relative h-screen w-screen bg-white bg-cover;
+  @apply overflow-hidden bg-home-gradient preserve-3d;
 }
 
 header {

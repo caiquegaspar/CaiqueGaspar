@@ -2,6 +2,8 @@
   "extends": "astro/tsconfigs/strict",
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/**/*.astro"],
   "compilerOptions": {
+    "ignoreDeprecations": "5.0",
+    "verbatimModuleSyntax": true,
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
@@ -10,18 +12,17 @@
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "esModuleInterop": true,
     "lib": ["esnext", "DOM"],
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "components/*": ["src/components/*"],
-      "layouts/*": ["src/layouts/*"],
-      "icons/*": ["src/components/icons/*"],
-      "assets/*": ["src/assets/*"],
-      "types/*": ["src/types/*"]
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@icons/*": ["src/components/icons/*"],
+      "@assets/*": ["src/assets/*"],
+      "@types/*": ["src/types/*"]
     }
   }
 }

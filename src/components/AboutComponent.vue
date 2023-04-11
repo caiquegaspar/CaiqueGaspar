@@ -1,20 +1,22 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import type { SkillsInterface } from "types/skills.interface";
+import type { SkillsInterface } from "@types/skills.interface";
 
-import SkillCard from "components/SkillCard.vue";
-import ArrowIcon from "icons/ArrowIcon.vue";
-import HtmlIcon from "icons/HtmlIcon.vue";
-import CssIcon from "icons/CssIcon.vue";
-import JsIcon from "icons/JsIcon.vue";
-import TsIcon from "icons/TsIcon.vue";
-import VueIcon from "icons/VueIcon.vue";
-import NodeIcon from "icons/NodeIcon.vue";
-import PostGresIcon from "icons/PostGresIcon.vue";
-import ExpressIcon from "icons/ExpressIcon.vue";
-import GraphQlIcon from "icons/GraphQlIcon.vue";
-import DirectionIcon from "icons/DirectionIcon.vue";
+import SkillCard from "@components/SkillCard.vue";
+import ArrowIcon from "@icons/ArrowIcon.vue";
+import HtmlIcon from "@icons/HtmlIcon.vue";
+import CssIcon from "@icons/CssIcon.vue";
+import JsIcon from "@icons/JsIcon.vue";
+import TsIcon from "@icons/TsIcon.vue";
+import VueIcon from "@icons/VueIcon.vue";
+import NodeIcon from "@icons/NodeIcon.vue";
+import PostGresIcon from "@icons/PostGresIcon.vue";
+import ExpressIcon from "@icons/ExpressIcon.vue";
+import GraphQlIcon from "@icons/GraphQlIcon.vue";
+import DirectionIcon from "@icons/DirectionIcon.vue";
+
+const emit = defineEmits<{ (e: "changeSection", val: string): void }>();
 
 const fundamentalsSkills: SkillsInterface = {
   title: "Fundamentos",
@@ -48,6 +50,8 @@ const goToPrevious = () =>
 
 const goToNext = () =>
   (activeCard.value = Math.min(Math.max(++activeCard.value, 0), 2));
+
+const changeSection = () => emit("changeSection", "previous");
 </script>
 
 <template>
@@ -126,13 +130,13 @@ const goToNext = () =>
       </div>
     </div>
 
-    <ArrowIcon class="arrow_down" />
+    <ArrowIcon class="arrow_down" @click="changeSection" />
   </section>
 </template>
 
 <style scoped>
 section {
-  @apply absolute top-0 left-0 h-full w-full bg-white bg-cover overflow-hidden;
+  @apply relative h-screen w-screen bg-white bg-cover overflow-hidden;
   @apply flex flex-col items-center bg-about xl:flex-row-reverse;
 }
 

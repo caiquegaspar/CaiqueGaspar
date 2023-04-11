@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 
-import type { Skill } from "types/skills.interface";
+import type { Skill } from "@types/skills.interface";
 
 const props = defineProps<{ title: string; skills: Skill[] }>();
 
