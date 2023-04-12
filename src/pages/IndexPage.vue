@@ -1,46 +1,46 @@
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
+import { useDebounce } from "@composables/useDebounce";
 
 import HomeComponent from "@components/HomeComponent.vue";
 import AboutComponent from "@components/AboutComponent.vue";
 
 const directions: { [key: string]: number } = { previous: -100, next: 100 };
+const [MIN, MAX]: number[] = [0, 100];
 
 const pagePos = ref<number>(0);
+const startTouch = ref<TouchEvent>();
+const endTouch = ref<TouchEvent>();
 
-const changeSection = (direction: string) =>
-  (pagePos.value += directions[direction]);
+const changeSection = (direction: string) => {
+  const parsed = parseInt(pagePos.value + directions[direction]);
+  const positionVal = Math.min(Math.max(parsed, MIN), MAX);
 
-const debounce = (func, wait, immediate) => {
-  let timeout;
-
-  return (...args) => {
-    const context = this;
-
-    const later = () => {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
-
-    const callNow = immediate && !timeout;
-
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-
-    if (callNow) func.apply(context, args);
-  };
+  pagePos.value = positionVal;
 };
 
 onMounted(() => {
-  const arrayPositionSection = [];
+  window.addEventListener(
+    "wheel",
+    useDebounce((event) => {
+      if (event.deltaY < 0) changeSection("previous");
+      else if (event.deltaY > 0) changeSection("next");
+    }, 200)
+  );
 
-  document.querySelectorAll(".section_page").forEach((item) => {
-    const objPair = {};
-    objPair[item.offsetTop] = item.getAttribute("id");
-    arrayPositionSection.push(objPair);
+  window.addEventListener(
+    "touchstart",
+    (event) => (startTouch.value = event.changedTouches[0])
+  );
+
+  window.addEventListener("touchend", (event) => {
+    endTouch.value = event.changedTouches[0];
+
+    const touchDirection = endTouch.value.screenY - startTouch.value.screenY;
+
+    if (touchDirection > 0) changeSection("previous");
+    else if (touchDirection < 0) changeSection("next");
   });
-
-  console.log(arrayPositionSection);
 });
 </script>
 
