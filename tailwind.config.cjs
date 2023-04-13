@@ -4,7 +4,7 @@ const plugin = require("tailwindcss/plugin");
 
 const homeOffice = "/src/assets/homeoffice.jpg";
 const image1 = "/src/assets/image1.jpg";
-const image2 = "/src/assets/5.png";
+const image2 = "/src/assets/image2.png";
 
 const transformStyles =
   "perspective(var(--tw-perspective)) rotateY(var(--tw-rotate-y)) translate3d(var(--tw-translate-x), var(--tw-translate-y), var(--tw-translate-z))" +
@@ -54,11 +54,11 @@ module.exports = {
         },
 
         ".bg-home-image": {
-          background: `url(${image1}) no-repeat center center / cover`,
+          background: `url(${image1}) center center / cover no-repeat`,
         },
 
         ".bg-about": {
-          background: `url(${image2}) bottom center no-repeat fixed`,
+          background: `url(${image2}) bottom center / cover no-repeat fixed`,
         },
       });
 

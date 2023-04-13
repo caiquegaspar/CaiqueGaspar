@@ -4,9 +4,10 @@ import { useDebounce } from "@composables/useDebounce";
 
 import HomeComponent from "@components/HomeComponent.vue";
 import AboutComponent from "@components/AboutComponent.vue";
+import ServicesComponent from "@components/ServicesComponent.vue";
 
 const directions: { [key: string]: number } = { previous: -100, next: 100 };
-const [MIN, MAX]: number[] = [0, 100];
+const [MIN, MAX]: number[] = [0, 200];
 
 const pagePos = ref<number>(0);
 const startTouch = ref<TouchEvent>();
@@ -48,6 +49,7 @@ onMounted(() => {
   <main :style="`transform: translateY(-${pagePos}vh)`">
     <HomeComponent class="section_page" @changeSection="changeSection" />
     <AboutComponent class="section_page" @changeSection="changeSection" />
+    <ServicesComponent class="section_page" @changeSection="changeSection" />
   </main>
 </template>
 

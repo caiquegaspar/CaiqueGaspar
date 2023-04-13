@@ -1,6 +1,6 @@
 export const useDebounce = (
   func: { apply: (arg0: undefined, arg1: any[]) => void },
-  wait: number,
+  delay: number,
   immediate: boolean
 ) => {
   let timeout: any;
@@ -15,7 +15,7 @@ export const useDebounce = (
     };
 
     clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
+    timeout = setTimeout(later, delay);
 
     if (callNow) func.apply(context, args);
   };

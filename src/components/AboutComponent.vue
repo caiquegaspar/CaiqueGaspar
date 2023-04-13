@@ -136,7 +136,7 @@ const changeSection = () => emit("changeSection", "previous");
 
 <style scoped>
 section {
-  @apply relative h-screen w-screen bg-white bg-cover overflow-hidden;
+  @apply relative h-screen w-screen bg-white overflow-hidden;
   @apply flex flex-col items-center bg-about xl:flex-row-reverse;
 }
 
