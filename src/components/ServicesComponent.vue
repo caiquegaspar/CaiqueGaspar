@@ -2,32 +2,37 @@
 import { onMounted } from "vue";
 
 onMounted(() => {
-  const pre = document.querySelector("pre");
+  const cards = document.querySelectorAll(".card_3d");
 
-  document.addEventListener("mousemove", (e) => {
-    rotateElement(e, pre);
-  });
+  document.addEventListener("mousemove", (e) =>
+    cards.forEach((card, idx) => rotateElement(e, card, idx))
+  );
 
-  function rotateElement(event, element) {
+  function rotateElement(event, element, idx) {
     // get mouse position
     const x = event.clientX;
     const y = event.clientY;
     // console.log(x, y)
 
-    // find the middle
-    const middleX = window.innerWidth / 2;
+    const elemCoordinates = element.getBoundingClientRect();
+
+    // find the middle based on the element
+    const middleX = elemCoordinates.x + elemCoordinates.width / 2; // window.innerWidth / 2;
     const middleY = window.innerHeight / 2;
-    // console.log(middleX, middleY)
+    // console.log(middleX, middleY);
 
     // get offset from middle as a percentage
     // and tone it down a little
-    const offsetX = ((x - middleX) / middleX) * 45;
+    const offsetX = ((x - middleX) / (middleX / (idx + 1))) * 45;
     const offsetY = ((y - middleY) / middleY) * 45;
     // console.log(offsetX, offsetY);
 
+    const xVal = Math.min(Math.max(offsetX, -45), 45);
+    const yVal = Math.min(Math.max(offsetY, -45), 45);
+
     // set rotation
-    element.style.setProperty("--rotateX", offsetX + "deg");
-    element.style.setProperty("--rotateY", -1 * offsetY + "deg");
+    element.style.setProperty("--rotateX", xVal + "deg");
+    element.style.setProperty("--rotateY", -1 * yVal + "deg");
   }
 });
 </script>
@@ -42,7 +47,7 @@ onMounted(() => {
       ></a>
       <div class="cards_services slide-container">
         <div class="slide-cards slide">
-          <div class="card_services card">
+          <!-- <div class="card_services card">
             <div class="face face1">
               <div class="content_services">
                 <img src="./images/design_128.png" />
@@ -95,15 +100,20 @@ onMounted(() => {
                 </p>
               </div>
             </div>
-          </div>
-          <div class="pre-container">
-            <pre
-              contenteditable
-              class="language-css"
-              tabindex="0"
-            ><code class="language-css"><span class="token selector">.awesome-layouts</span> <span class="token punctuation">{</span>
-    <span class="token property">display</span><span class="token punctuation">:</span> grid<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span></code></pre>
+          </div> -->
+
+          <div class="card_container">
+            <div class="card_3d">
+              <span>Design</span>
+            </div>
+
+            <div class="card_3d">
+              <span>Design</span>
+            </div>
+
+            <div class="card_3d">
+              <span>Design</span>
+            </div>
           </div>
         </div>
       </div>
@@ -120,10 +130,14 @@ onMounted(() => {
 section {
   @apply relative h-screen w-screen bg-white overflow-hidden;
   @apply flex flex-col justify-center;
-  background: linear-gradient(135deg, transparent 0%, #131414 80%, #000000 100%),
-    url("../images/7.jpg") center center no-repeat;
+  background: linear-gradient(135deg, transparent 0%, #131414 80%, #000000 100%);
+    /* , url("../images/7.jpg") center center no-repeat; */
   background-size: cover;
   align-items: center !important;
+
+  --pink: hsl(338, 70%, 55%);
+  --teal: hsl(183, 70%, 62%);
+  --white: hsl(334, 7%, 95%);
 }
 
 .container_services {
@@ -285,20 +299,14 @@ section {
   }
 }
 
-:root {
-  --pink: hsl(338, 70%, 55%);
-  --teal: hsl(183, 70%, 62%);
-  --white: hsl(334, 7%, 95%);
+.card_container {
+  @apply flex gap-32 text-white;
 }
 
-pre {
-  --selector: var(--pink);
-  --property: var(--teal);
-  --punctuation: var(--white);
-  --undefined: var(--white);
-  font-size: 3rem;
+.card_3d {
+  font-size: 5rem;
   font-weight: bold;
-  color: var(--undefined);
+  color: var(--white);
   background: #0a0f1a;
   padding: 2rem;
   border-radius: 1rem;
@@ -307,19 +315,24 @@ pre {
   transform: perspective(5000px) rotateY(var(--rotateX)) rotateX(var(--rotateY));
 }
 
-pre > * {
+/* .card_3d:hover {
+  transition: transform 200ms;
+  transform: perspective(5000px) rotateY(0) rotateX(0);
+} */
+
+.card_3d > * {
   text-shadow: 0 0 0.3em currentColor;
 }
 
-pre::before,
-pre::after {
+.card_3d::before,
+.card_3d::after {
   content: "";
   position: absolute;
   border-radius: inherit;
 }
 
 /* shadow */
-pre::before {
+.card_3d::before {
   inset: 0.75rem;
   border-radius: inherit;
   background: black;
@@ -330,33 +343,10 @@ pre::before {
 }
 
 /* gradient thingy */
-pre::after {
+.card_3d::after {
   z-index: -2;
   inset: -1rem;
   background: linear-gradient(-45deg, red, blue);
   transform: translateZ(-50px);
-}
-
-.selector {
-  color: var(--selector);
-}
-
-.property {
-  color: var(--property);
-}
-
-.punctuation {
-  color: var(--punctuation);
-}
-
-.property + .punctuation {
-  color: var(--property);
-}
-
-.pre-container {
-  /* position: relative;
-  display: grid;
-  grid-template: repeat(3, 1fr) / repeat(3, 1fr); */
-  color: #fff;
 }
 </style>
