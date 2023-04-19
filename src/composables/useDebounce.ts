@@ -1,16 +1,16 @@
-export const useDebounce = (
-  func: { apply: (arg0: undefined, arg1: any[]) => void },
+export const useDebounce = <F extends (...args: any[]) => any>(
+  func: F,
   delay: number,
   immediate: boolean
 ) => {
-  let timeout: any;
+  let timeout: number = 0;
 
-  return (...args: any) => {
+  return (...args: any[]) => {
     const context = this;
     const callNow = immediate && !timeout;
 
     const later = () => {
-      timeout = null;
+      timeout = 0;
       if (!immediate) func.apply(context, args);
     };
 
