@@ -40,6 +40,15 @@ module.exports = {
             transform: "translateY(10px)",
           },
         },
+
+        blink: {
+          "0%, 100%": {
+            background: "#fff",
+          },
+          "40%, 50%": {
+            background: "transparent",
+          },
+        },
       },
     },
   },

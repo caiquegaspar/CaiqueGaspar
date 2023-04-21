@@ -9,7 +9,7 @@ import ServicesComponent from "@components/ServicesComponent.vue";
 const directions: { [key: string]: number } = { previous: -100, next: 100 };
 const [MIN, MAX]: number[] = [0, 200];
 
-const pagePos = ref<number>(200);
+const pagePos = ref<number>(0);
 const startTouch = ref<TouchEvent>();
 const endTouch = ref<TouchEvent>();
 

@@ -1,5 +1,26 @@
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
+import { usePromiseTimeout } from "@composables/usePromiseTimeout";
+import { useSequencer } from "@composables/useSequencer";
+
+const pageTitle = ref<string>("Meus Serviços");
+const pageDelay = ref<number>(500);
+const typewriterLetters = ref<string[]>([]);
+const typewriterSpeed = ref<number>(80);
+const showContent = ref<boolean>(false);
+
+const startType = () => {
+  const promiseMap = [];
+  const letters = pageTitle.value.split("");
+
+  letters.map((letter) =>
+    promiseMap.push(
+      async () => await usePromiseTimeout(typewriterSpeed.value, letter)
+    )
+  );
+
+  useSequencer(promiseMap, (el) => typewriterLetters.value.push(el));
+};
 
 const rotateElement = (event, element, idx) => {
   const rotateLimit = 25; // 45
@@ -26,19 +47,35 @@ const rotateElement = (event, element, idx) => {
   element.style.setProperty("--rotateY", -1 * yVal + "deg");
 };
 
-onMounted(() => {
+onMounted(async () => {
   const cards = document.querySelectorAll(".card_3d");
   const servicesContainer = document.querySelector(".services_container");
+  const typewriterDelay =
+    pageDelay.value + typewriterSpeed.value * pageTitle.value.length + 700;
 
   servicesContainer.addEventListener("mousemove", (e) =>
     cards.forEach((card, idx) => rotateElement(e, card, idx))
   );
+
+  setTimeout(() => startType(), pageDelay.value);
+  await usePromiseTimeout(typewriterDelay);
+
+  showContent.value = true;
 });
 </script>
 
 <template>
   <section class="services_container">
-    <div class="cards_container">
+    <div class="typewriter_text" :class="{ typewriter_focus: !showContent }">
+      <p>
+        <span v-for="(letter, idx) in typewriterLetters" :key="letter + idx">
+          {{ letter }}
+        </span>
+      </p>
+      <span class="typewriter_cursor">&nbsp;</span>
+    </div>
+
+    <div class="cards_container" :class="{ hide_cards: !showContent }">
       <div class="card_3d">
         <div class="card_wrapper">
           <span>Design</span>
@@ -90,8 +127,26 @@ section {
   @apply flex flex-col justify-center items-center bg-services;
 }
 
+.typewriter_text {
+  @apply absolute top-14 flex gap-[.3rem] text-3xl text-white scale-[1];
+  @apply transition-all duration-300;
+}
+
+.typewriter_focus {
+  @apply top-1/2 scale-[5];
+}
+
+.typewriter_cursor {
+  @apply w-[.01rem] bg-white animate-[blink_.8s_ease-in-out_infinite];
+}
+
 .cards_container {
-  @apply  w-3/4 h-full grid grid-cols-3 gap-24 place-items-center text-white z-10;
+  @apply w-3/4 h-full grid grid-cols-3 gap-24 place-items-center text-white z-10;
+  @apply transition-transform duration-300;
+}
+
+.hide_cards {
+  @apply translate-y-[100%];
 }
 
 .card_3d {
