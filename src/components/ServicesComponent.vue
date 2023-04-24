@@ -1,13 +1,47 @@
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
-import { usePromiseTimeout } from "@composables/usePromiseTimeout";
+import { computed, onMounted, ref, watch } from "vue";
+import {
+  usePromiseTimeout,
+  useAbortController,
+} from "@composables/usePromiseTimeout";
 import { useSequencer } from "@composables/useSequencer";
+import { useRotateElem } from "@composables/useRotateElem";
+
+const props = defineProps<{ isActive: boolean }>();
+
+const typewriterDelay = computed(
+  () => pageDelay.value + typewriterSpeed.value * pageTitle.value.length + 700
+);
+
+const introAbortController = useAbortController();
+const typewriterAbortController = useAbortController();
 
 const pageTitle = ref<string>("Meus Serviços");
-const pageDelay = ref<number>(500);
+const pageDelay = ref<number>(400);
 const typewriterLetters = ref<string[]>([]);
 const typewriterSpeed = ref<number>(80);
 const showContent = ref<boolean>(false);
+
+const setIntro = async () => {
+  setTimeout(() => startType(), pageDelay.value);
+
+  await usePromiseTimeout({
+    delay: typewriterDelay.value,
+    abortController: introAbortController,
+  });
+
+  showContent.value = true;
+};
+
+const resetIntro = () => {
+  introAbortController.abort();
+  typewriterAbortController.abort();
+
+  queueMicrotask(() => {
+    showContent.value = false;
+    setTimeout(() => (typewriterLetters.value.length = 0), 600);
+  });
+};
 
 const startType = () => {
   const promiseMap = [];
@@ -15,57 +49,32 @@ const startType = () => {
 
   letters.map((letter) =>
     promiseMap.push(
-      async () => await usePromiseTimeout(typewriterSpeed.value, letter)
+      async () =>
+        await usePromiseTimeout({
+          delay: typewriterSpeed.value,
+          abortController: typewriterAbortController,
+          str: letter,
+        })
     )
   );
 
   useSequencer(promiseMap, (el) => typewriterLetters.value.push(el));
 };
 
-const rotateElement = (event, element, idx) => {
-  const rotateLimit = 25; // 45
-  // get mouse position
-  const x = event.clientX;
-  const y = event.clientY;
-
-  const elemCoordinates = element.getBoundingClientRect();
-
-  // find the middle based on the element
-  const middleX = elemCoordinates.x + elemCoordinates.width / 2; // window.innerWidth / 2;
-  const middleY = window.innerHeight / 2;
-
-  // get offset from middle as a percentage
-  // and tone it down a little
-  const offsetX = ((x - middleX) / (middleX / (idx + 1))) * rotateLimit;
-  const offsetY = ((y - middleY) / middleY) * rotateLimit;
-
-  const xVal = Math.min(Math.max(offsetX, -rotateLimit), rotateLimit);
-  const yVal = Math.min(Math.max(offsetY, -rotateLimit), rotateLimit);
-
-  // set rotation
-  element.style.setProperty("--rotateX", xVal + "deg");
-  element.style.setProperty("--rotateY", -1 * yVal + "deg");
+const animateCards = (e: MouseEvent) => {
+  const cards = document.querySelectorAll(".card_3d");
+  cards.forEach((card, idx) => useRotateElem(e, card, idx));
 };
 
-onMounted(async () => {
-  const cards = document.querySelectorAll(".card_3d");
-  const servicesContainer = document.querySelector(".services_container");
-  const typewriterDelay =
-    pageDelay.value + typewriterSpeed.value * pageTitle.value.length + 700;
-
-  servicesContainer.addEventListener("mousemove", (e) =>
-    cards.forEach((card, idx) => rotateElement(e, card, idx))
-  );
-
-  setTimeout(() => startType(), pageDelay.value);
-  await usePromiseTimeout(typewriterDelay);
-
-  showContent.value = true;
-});
+watch(
+  () => props.isActive,
+  (newValue, oldValue) => (newValue ? setIntro() : resetIntro()),
+  { immediate: true }
+);
 </script>
 
 <template>
-  <section class="services_container">
+  <section class="services_container" @mousemove="animateCards">
     <div class="typewriter_text" :class="{ typewriter_focus: !showContent }">
       <p>
         <span v-for="(letter, idx) in typewriterLetters" :key="letter + idx">
