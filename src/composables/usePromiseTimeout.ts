@@ -7,29 +7,47 @@ interface PromiseTimeoutInterface {
 }
 
 interface AbortControllerInterface {
-  idx: number;
+  idxs: number[];
   abort(): void;
 }
 
-const timeoutArr: number[] = [];
+type PromiseParams = {
+  resolve: (value: string | PromiseLike<string>) => void;
+  reject: (reason?: any) => void;
+};
+
+const timeoutArr: { resolve(): void; timeout: number; abort(): void }[] = [];
 
 export async function usePromiseTimeout({
   delay = 0,
   callBackFn,
   abortController,
-  str = "Default sucess message",
+  str = "Timeout ended!",
   reason,
 }: PromiseTimeoutInterface): Promise<string> {
   const idx = timeoutArr.length;
+  let abort = false;
 
-  if (abortController) abortController.idx = idx;
+  if (abortController) abortController.idxs.push(idx);
 
-  const resolveTimeout = (
-    resolve: (value: string | PromiseLike<string>) => void,
-    reject: (reason?: any) => void
-  ) => {
-    if (reason) {
-      reject(reason);
+  const abortFn = () => {
+    abort = true;
+    clearTimeout(timeoutArr[idx].timeout);
+    queueMicrotask(() => timeoutArr[idx].resolve());
+  };
+
+  const abortFnProxy = new Proxy(abortFn, {
+    apply(target, thisArg, args: []) {
+      target.apply(thisArg, args);
+    },
+  });
+
+  const resolveTimeout = <A extends PromiseParams>({ resolve, reject }: A) => {
+    if (reason || abort) {
+      // reject(reason);
+      // or
+      // throw new Error(reason)
+
       return;
     }
 
@@ -40,18 +58,21 @@ export async function usePromiseTimeout({
 
   return new Promise(
     (resolve, reject) =>
-      (timeoutArr[idx] = setTimeout(
-        () => resolveTimeout(resolve, reject),
-        delay
-      ))
+      (timeoutArr[idx] = {
+        resolve: () => resolveTimeout({ resolve, reject }),
+        timeout: setTimeout(() => resolveTimeout({ resolve, reject }), delay),
+        abort: abortFnProxy,
+      })
   );
 }
 
 export function useAbortController(): AbortControllerInterface {
   return {
-    idx: -1,
+    idxs: [],
     abort() {
-      clearTimeout(timeoutArr[this.idx]);
+      this.idxs.forEach((idx) => {
+        timeoutArr[idx].abort();
+      });
     },
   };
 }

@@ -4,7 +4,10 @@ import {
   usePromiseTimeout,
   useAbortController,
 } from "@composables/usePromiseTimeout";
-import { useSequencer } from "@composables/useSequencer";
+import {
+  useSequencer,
+  useSequencerController,
+} from "@composables/useSequencer";
 import { useRotateElem } from "@composables/useRotateElem";
 
 const props = defineProps<{ isActive: boolean }>();
@@ -14,12 +17,12 @@ const typewriterDelay = computed(
 );
 
 const introAbortController = useAbortController();
-const typewriterAbortController = useAbortController();
+const sequenceController = useSequencerController();
 
 const pageTitle = ref<string>("Meus Serviços");
 const pageDelay = ref<number>(400);
 const typewriterLetters = ref<string[]>([]);
-const typewriterSpeed = ref<number>(80);
+const typewriterSpeed = ref<number>(70);
 const showContent = ref<boolean>(false);
 
 const setIntro = async () => {
@@ -33,32 +36,25 @@ const setIntro = async () => {
   showContent.value = true;
 };
 
-const resetIntro = () => {
+const resetIntro = async () => {
+  sequenceController.abort();
   introAbortController.abort();
-  typewriterAbortController.abort();
 
-  queueMicrotask(() => {
-    showContent.value = false;
-    setTimeout(() => (typewriterLetters.value.length = 0), 600);
-  });
+  showContent.value = false;
+  setTimeout(() => (typewriterLetters.value.length = 0), 600);
 };
 
 const startType = () => {
   const promiseMap = [];
   const letters = pageTitle.value.split("");
 
-  letters.map((letter) =>
-    promiseMap.push(
-      async () =>
-        await usePromiseTimeout({
-          delay: typewriterSpeed.value,
-          abortController: typewriterAbortController,
-          str: letter,
-        })
-    )
-  );
+  letters.map((letter) => promiseMap.push(letter));
 
-  useSequencer(promiseMap, (el) => typewriterLetters.value.push(el));
+  useSequencer({
+    delay: typewriterSpeed.value,
+    array: promiseMap,
+    andThen: (el) => typewriterLetters.value.push(el),
+  });
 };
 
 const animateCards = (e: MouseEvent) => {

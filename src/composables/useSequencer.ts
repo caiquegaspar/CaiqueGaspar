@@ -1,19 +1,26 @@
-export const useSequencer = <F extends (arg: any) => void>(
-  array: (() => Promise<string>)[],
-  andThen: F
-) => {
-  return (async function () {
-    await array.reduce(
-      async (
-        previousPromise: Promise<void>,
-        nextAsyncFunction: () => Promise<string>
-      ) => {
-        await previousPromise;
-        const result = await nextAsyncFunction();
+interface SequencerInterface {
+  delay: number;
+  array: string[];
+  andThen: (arg: any) => void;
+}
 
-        andThen(result);
-      },
-      Promise.resolve()
+let timeout: number;
+
+export const useSequencer = ({ delay, array, andThen }: SequencerInterface) =>
+  array.reduce(async (previousPromise: Promise<void>, nextItem: string) => {
+    await previousPromise;
+
+    const result = await new Promise(
+      (resolve) => (timeout = setTimeout(() => resolve(nextItem), delay))
     );
-  })();
-};
+
+    andThen(result);
+  }, Promise.resolve());
+
+export function useSequencerController(): { abort(): void } {
+  return {
+    abort() {
+      clearTimeout(timeout);
+    },
+  };
+}
