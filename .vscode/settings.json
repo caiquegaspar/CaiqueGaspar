@@ -25,5 +25,6 @@
     "titleBar.inactiveBackground": "#42b88399",
     "titleBar.inactiveForeground": "#15202b99"
   },
-  "emmet.extensionsPath": ["E:\\Documents\\FrontEnd\\snippets.json"]
+  "emmet.extensionsPath": ["E:\\Documents\\FrontEnd\\snippets.json"],
+  "svg.preview.background": "transparent"
 }
