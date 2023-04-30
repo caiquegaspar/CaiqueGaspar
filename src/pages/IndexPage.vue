@@ -2,6 +2,7 @@
 import { computed, onMounted, ref } from "vue";
 import { useDebounce } from "@composables/useDebounce";
 import { useRange } from "@composables/useRange";
+import { useViewPort } from "@composables/useViewPort";
 
 import HomeComponent from "@components/HomeComponent.vue";
 import AboutComponent from "@components/AboutComponent.vue";
@@ -9,16 +10,41 @@ import ServicesComponent from "@components/ServicesComponent.vue";
 
 const progressPercentage = computed(() => (pagePos.value / MAX) * 100);
 
-const directions: { [key: string]: number } = { previous: -100, next: 100 };
-const [MIN, MAX]: number[] = [0, 200];
+const directions: { [key: string]: number } = { previous: -1, next: 1 };
+const [MIN, MAX]: number[] = [0, 2];
+const pageSections: { [key: string]: number } = {
+  home: 0,
+  about: 1,
+  services: 2,
+  contact: 3,
+};
 
+const heightValue = ref<number>(0);
+const widthValue = ref<number>(0);
 const pagePos = ref<number>(0);
+const pageTranslate = ref<number>(0);
 const startTouch = ref<TouchEvent>();
 const endTouch = ref<TouchEvent>();
 const hideMouseTrailer = ref(true);
 
-const changeSection = (direction: string) =>
-  (pagePos.value = useRange(pagePos.value + directions[direction], MIN, MAX));
+const setViewPort = (): void => {
+  const [vw, vh] = useViewPort();
+
+  heightValue.value = vh;
+  widthValue.value = vw;
+};
+
+const changeSection = (direction: string | boolean, target?: string) => {
+  if (!direction) {
+    pagePos.value = useRange(pageSections[target], MIN, MAX);
+    pageTranslate.value = pagePos.value * heightValue.value;
+
+    return;
+  }
+
+  pagePos.value = useRange(pagePos.value + directions[direction], MIN, MAX);
+  pageTranslate.value = pagePos.value * heightValue.value;
+};
 
 const animateTrailer = (e: MouseEvent) => {
   hideMouseTrailer.value = false;
@@ -34,6 +60,13 @@ const animateTrailer = (e: MouseEvent) => {
 };
 
 onMounted(() => {
+  setViewPort();
+
+  window.addEventListener(
+    "resize",
+    useDebounce(() => setViewPort(), 200)
+  );
+
   window.addEventListener(
     "wheel",
     useDebounce((event) => {
@@ -66,7 +99,10 @@ onMounted(() => {
 
     <div class="mouse_trailer" :class="{ 'opacity-0': hideMouseTrailer }"></div>
 
-    <div class="main_content" :style="`transform: translateY(-${pagePos}vh)`">
+    <div
+      class="main_content"
+      :style="`transform: translateY(-${pageTranslate}px); width: ${widthValue}px; height: ${heightValue}px`"
+    >
       <HomeComponent
         class="section_page"
         @changeSection="changeSection"
@@ -76,13 +112,13 @@ onMounted(() => {
       <AboutComponent
         class="section_page"
         @changeSection="changeSection"
-        :isActive="pagePos === 100"
+        :isActive="pagePos === 1"
       />
 
       <ServicesComponent
         class="section_page"
         @changeSection="changeSection"
-        :isActive="pagePos === 200"
+        :isActive="pagePos === 2"
       />
     </div>
   </main>
@@ -101,10 +137,10 @@ onMounted(() => {
 .mouse_trailer {
   @apply hidden lg:grid fixed top-0 left-0 place-items-center w-6 h-6;
   @apply bg-transparent rounded-full border-2 border-white z-[9999] pointer-events-none;
-  /* backdrop-filter: invert(100%); or tailwind "backdrop-invert" */
+  /* backdrop-filter: invert(100%); or tailwind "backdrop-invert" to invert colors inside trailer */
 }
 
 .main_content {
-  @apply absolute h-screen w-screen font-['Raleway',sans-serif] transition-all duration-500;
+  @apply absolute font-['Raleway',sans-serif] transition-all duration-500;
 }
 </style>

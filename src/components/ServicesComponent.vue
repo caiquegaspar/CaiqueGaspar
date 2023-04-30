@@ -198,7 +198,7 @@ watch(
 
 <style scoped>
 section {
-  @apply relative h-screen w-screen bg-white overflow-hidden;
+  @apply relative h-full w-full bg-white overflow-hidden;
   @apply flex flex-col justify-center items-center bg-services;
 }
 
@@ -208,7 +208,7 @@ section {
 }
 
 .typewriter_focus {
-  @apply top-1/2 scale-[2] md:scale-[3] xl:scale-[4] 2xl:scale-[5];
+  @apply top-1/2 scale-[1.8] md:scale-[3] xl:scale-[4] 2xl:scale-[5];
 }
 
 .typewriter_cursor {

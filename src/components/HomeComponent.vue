@@ -3,15 +3,19 @@ import { ref } from "vue";
 
 import TerminalIcon from "@icons/TerminalIcon.vue";
 
+const props = defineProps<{ isActive: boolean }>();
+
 const emit = defineEmits<{ (e: "changeSection", val: string): void }>();
 
 const expandSideBar = ref(false);
 
 const changeSection = () => emit("changeSection", "next");
+
+const jumpTo = (target: string) => emit("changeSection", false, target);
 </script>
 
 <template>
-  <section :class="{ active: expandSideBar }">
+  <section :class="{ active: isActive && expandSideBar }">
     <header>
       <TerminalIcon width="25" />
       <h2 class="logo">Dev <span class="text-[#42b883]">Caíque</span></h2>
@@ -26,7 +30,7 @@ const changeSection = () => emit("changeSection", "next");
       </div>
     </header>
 
-    <main>
+    <div>
       <div class="intro_container">
         <div class="container_content">
           <h1 class="title">
@@ -47,22 +51,30 @@ const changeSection = () => emit("changeSection", "next");
 
       <div class="shadow one"></div>
       <div class="shadow two"></div>
-    </main>
+    </div>
 
     <aside>
       <nav class="links">
         <ul>
           <li>
-            <button style="--i: 0.05s">Home</button>
+            <button style="--i: 0.05s" @click="jumpTo('home')">
+              <span>Home</span>
+            </button>
           </li>
           <li>
-            <button style="--i: 0.1s">Sobre</button>
+            <button style="--i: 0.1s" @click="jumpTo('about')">
+              <span>Sobre</span>
+            </button>
           </li>
           <li>
-            <button style="--i: 0.15s">Serviços</button>
+            <button style="--i: 0.15s" @click="jumpTo('services')">
+              <span>Serviços</span>
+            </button>
           </li>
           <li>
-            <button style="--i: 0.2s">Contato</button>
+            <button style="--i: 0.2s" @click="jumpTo('contact')">
+              <span>Contato</span>
+            </button>
           </li>
         </ul>
       </nav>
@@ -72,7 +84,7 @@ const changeSection = () => emit("changeSection", "next");
 
 <style scoped>
 section {
-  @apply relative h-screen w-screen bg-white bg-cover;
+  @apply relative h-full w-full bg-white bg-cover;
   @apply overflow-hidden bg-home-gradient preserve-3d;
 }
 
@@ -105,11 +117,11 @@ header {
 }
 
 .intro_container {
-  @apply origin-left transition duration-500 min-h-screen w-full bg-home-image;
+  @apply absolute origin-left transition duration-500 h-full w-full bg-home-image;
 }
 
 .container_content {
-  @apply absolute flex flex-col justify-center items-center w-full h-full;
+  @apply relative flex flex-col justify-center items-center w-full h-full;
   @apply text-[#fff] top-0 left-0 bg-[#000000bf] text-center;
 }
 
@@ -126,7 +138,7 @@ header {
 }
 
 .intro_btn {
-  @apply bg-[#42b883] mt-4 py-2 px-7 rounded-3xl uppercase font-[600];
+  @apply bg-[#42b883] mt-4 py-2 px-7 rounded-3xl uppercase font-[600] z-20;
 }
 
 .links {
@@ -134,20 +146,16 @@ header {
 }
 
 .links button {
-  @apply animate-[hide_.5s_forwards_ease] text-[#fff] my-3 uppercase font-[500] text-[1.8rem];
-  @apply transition duration-300 translate-y-[10px] opacity-0 tracking-wider;
+  @apply animate-[hide_.5s_forwards_ease] text-[#fff] my-3 uppercase font-[500] text-[1.8rem] pointer-events-none;
+  @apply transition duration-300 translate-y-[10px] opacity-0 tracking-wider lg:hover:text-[#42b883] z-10;
 }
 
-.links button.active {
-  @apply text-[#42b883];
-}
-
-.links button:hover {
+.links ul li:nth-child(1) button {
   @apply text-[#42b883];
 }
 
 section.active .links button {
-  @apply animate-[appear_.5s_forwards_ease_var(--i)];
+  @apply animate-[appear_.5s_forwards_ease_var(--i)] pointer-events-auto;
 }
 
 .shadow {

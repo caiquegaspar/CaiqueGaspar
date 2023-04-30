@@ -113,15 +113,15 @@ const goToNext = () =>
               </template>
             </SkillCard>
           </div>
+        </div>
 
-          <div class="carousel_arrows">
-            <button class="arrow_left">
-              <DirectionIcon width="120" :rotate="90" @click="goToPrevious" />
-            </button>
-            <button class="arrow_right">
-              <DirectionIcon width="120" :rotate="270" @click="goToNext" />
-            </button>
-          </div>
+        <div class="carousel_arrows">
+          <button class="arrow_left">
+            <DirectionIcon width="120" :rotate="90" @click="goToPrevious" />
+          </button>
+          <button class="arrow_right">
+            <DirectionIcon width="120" :rotate="270" @click="goToNext" />
+          </button>
         </div>
       </div>
     </div>
@@ -132,7 +132,7 @@ const goToNext = () =>
 
 <style scoped>
 section {
-  @apply relative h-screen w-screen bg-white overflow-hidden;
+  @apply relative h-full w-full bg-white overflow-hidden;
   @apply flex flex-col items-center bg-about xl:flex-row-reverse;
 }
 
@@ -156,9 +156,9 @@ p {
 }
 
 :is(.about_container, .skills_container) {
-  @apply h-1/2 w-screen flex flex-col justify-center items-center relative;
+  @apply h-1/2 w-full flex flex-col justify-center items-center relative;
   @apply transition-all duration-[.7s] ease-[cubic-bezier(0.55,0,0.1,1)] overflow-hidden;
-  @apply hover:w-[100%] hover:h-[300%] xl:w-1/2 xl:h-screen xl:hover:h-full;
+  @apply hover:w-[100%] hover:h-[300%] xl:w-1/2 xl:h-full xl:hover:h-full;
 }
 
 .about_container {
@@ -208,10 +208,10 @@ p {
 }
 
 .arrow_left {
-  @apply -left-28;
+  @apply -left-7;
 }
 
 .arrow_right {
-  @apply -right-28;
+  @apply -right-7;
 }
 </style>
