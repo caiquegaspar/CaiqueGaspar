@@ -103,14 +103,15 @@ module.exports = {
 
           "card-3d": (value) => ({
             "--tw-card-perspective": value.split(" ")[0],
-            "--tw-card-translateY": value.split(" ")[1],
-            "--tw-card-translateZ": value.split(" ")[2],
-            "--tw-card-rotateY": value.split(" ")[3],
-            "--tw-card-rotateX": value.split(" ")[4],
+            "--tw-card-translateX": value.split(" ")[1],
+            "--tw-card-translateY": value.split(" ")[2],
+            "--tw-card-translateZ": value.split(" ")[3],
+            "--tw-card-rotateY": value.split(" ")[4],
+            "--tw-card-rotateX": value.split(" ")[5],
 
             transform:
               "perspective(var(--tw-card-perspective))" +
-              "translateY(var(--tw-card-translateY)) translateZ(var(--tw-card-translateZ))" +
+              "translateX(var(--tw-card-translateX)) translateY(var(--tw-card-translateY)) translateZ(var(--tw-card-translateZ))" +
               "rotateY(var(--tw-card-rotateY)) rotateX(var(--tw-card-rotateX))",
           }),
 

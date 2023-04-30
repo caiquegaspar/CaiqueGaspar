@@ -15,9 +15,23 @@ const [MIN, MAX]: number[] = [0, 200];
 const pagePos = ref<number>(0);
 const startTouch = ref<TouchEvent>();
 const endTouch = ref<TouchEvent>();
+const hideMouseTrailer = ref(true);
 
 const changeSection = (direction: string) =>
   (pagePos.value = useRange(pagePos.value + directions[direction], MIN, MAX));
+
+const animateTrailer = (e: MouseEvent) => {
+  hideMouseTrailer.value = false;
+
+  const trailer = document.querySelector(".mouse_trailer");
+
+  const x = e.clientX - trailer.offsetWidth / 2;
+  const y = e.clientY - trailer.offsetHeight / 2;
+
+  const keyframes = { transform: `translate(${x}px, ${y}px)` };
+
+  trailer.animate(keyframes, { duration: 700, fill: "forwards" });
+};
 
 onMounted(() => {
   window.addEventListener(
@@ -45,10 +59,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <main>
+  <main @mousemove="animateTrailer">
     <div class="progress_bar">
       <span class="bar" :style="`width: ${progressPercentage}%`"></span>
     </div>
+
+    <div class="mouse_trailer" :class="{ 'opacity-0': hideMouseTrailer }"></div>
 
     <div class="main_content" :style="`transform: translateY(-${pagePos}vh)`">
       <HomeComponent
@@ -74,11 +90,18 @@ onMounted(() => {
 
 <style scoped>
 .progress_bar {
-  @apply fixed top-0 left-0 z-50 w-full h-1 bg-[#35495e];
+  @apply fixed top-0 left-0 z-50 w-full h-2 bg-[#35495e];
 }
+
 .bar {
-  @apply block h-full bg-[linear-gradient(90deg,#33ffbb,#31acff,#2ad39f,#0170f0)];
+  @apply block h-full bg-[linear-gradient(90deg,#4ecf94,#2a92d9,#42b883,#025abf)];
   @apply transition-all duration-700;
+}
+
+.mouse_trailer {
+  @apply hidden lg:grid fixed top-0 left-0 place-items-center w-6 h-6;
+  @apply bg-transparent rounded-full border-2 border-white z-[9999] pointer-events-none;
+  /* backdrop-filter: invert(100%); or tailwind "backdrop-invert" */
 }
 
 .main_content {

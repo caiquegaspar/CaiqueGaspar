@@ -16,8 +16,6 @@ import ExpressIcon from "@icons/ExpressIcon.vue";
 import GraphQlIcon from "@icons/GraphQlIcon.vue";
 import DirectionIcon from "@icons/DirectionIcon.vue";
 
-const emit = defineEmits<{ (e: "changeSection", val: string): void }>();
-
 const fundamentalsSkills: SkillsInterface = {
   title: "Fundamentos",
   skills: [
@@ -50,8 +48,6 @@ const goToPrevious = () =>
 
 const goToNext = () =>
   (activeCard.value = Math.min(Math.max(++activeCard.value, 0), 2));
-
-const changeSection = () => emit("changeSection", "previous");
 </script>
 
 <template>
@@ -130,7 +126,7 @@ const changeSection = () => emit("changeSection", "previous");
       </div>
     </div>
 
-    <ArrowIcon class="arrow_down" @click="changeSection" />
+    <ArrowIcon class="arrow_down" />
   </section>
 </template>
 
@@ -162,7 +158,7 @@ p {
 :is(.about_container, .skills_container) {
   @apply h-1/2 w-screen flex flex-col justify-center items-center relative;
   @apply transition-all duration-[.7s] ease-[cubic-bezier(0.55,0,0.1,1)] overflow-hidden;
-  @apply hover:w-full hover:h-[300%] xl:w-1/2 xl:h-screen xl:hover:h-full;
+  @apply hover:w-[100%] hover:h-[300%] xl:w-1/2 xl:h-screen xl:hover:h-full;
 }
 
 .about_container {
